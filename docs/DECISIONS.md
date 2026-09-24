@@ -53,3 +53,15 @@ The v9 source template uses gold `#b08d2c`. Browser axe checks found that dark t
 Status: Accepted
 
 The camp name is confirmed as YouthForGod Camp. The header and footer use `src/assets/updatedLogo2.png` because it is the compact Youth For God logo and is less likely than the wider `logo.png` to cause mobile navigation overflow. `src/assets/favicon2.png` is copied to `public/favicon.png` for browser favicon use. `src/assets/favicon.png` is not used because its contents are JPEG data despite the `.png` extension.
+
+## ADR 010: External Registration Links Open In New Tabs
+
+Status: Accepted
+
+The confirmed registration destination is an external system at `https://app.camp-paradise.org/`. Every Register Now link opens it with `target="_blank"` and `rel="noopener noreferrer"` so visitors keep the camp site available while moving to registration, and the new tab cannot access the originating page through `window.opener`.
+
+## ADR 011: Confirmed Dates Replace Sample Schedule Logistics
+
+Status: Accepted
+
+The confirmed camp date range is November 25-29, but the year and exact daily logistics are not confirmed. The Schedule view therefore uses the provided Wednesday-Sunday teaching outline for November 25-29 and removes sample template date labels, arrival/departure times, visitor-night copy, sample price, and sample phone number from active UI.

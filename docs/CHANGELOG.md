@@ -17,6 +17,8 @@
 - Added `public/favicon.png` from the provided Youth For God favicon mark.
 - Added the confirmed "Grace That Transforms" camp theme and Titus 2:11-14 ESV main verse to typed content.
 - Added the confirmed registration URL to typed content.
+- Added the confirmed Strawberry Valley camp address to typed content.
+- Added the confirmed November 25-29 date range to typed content.
 
 ### Changed
 
@@ -28,6 +30,10 @@
 - Removed the unconfirmed Selah Fellowship organization reference from the footer.
 - Replaced the home-page placeholder theme verse with Titus 2:11-14 ESV.
 - Changed Register Now controls from status buttons to links pointing to `https://app.camp-paradise.org/`.
+- Updated Register Now links to open in a new tab with `rel="noopener noreferrer"`.
+- Replaced the old template address in the footer and FAQ location answer with `12725 La Porte Rd, Strawberry Valley, CA 95981`.
+- Replaced the sample Sunday-Saturday schedule with the confirmed November 25-29 Wednesday-Sunday teaching outline.
+- Replaced sample price and phone copy with unconfirmed-status copy.
 
 ### Removed
 
@@ -42,7 +48,7 @@
 - `pnpm build`: Passed.
 - `pnpm test:e2e`: Passed with Chromium, iPhone 13 WebKit, and iPad Pro 11 after allowing the local preview server.
 - `pnpm validate`: Passed after allowing the local preview server.
-- Testing Agent review: Approved with no blocking findings for the template implementation, YouthForGod Camp branding update, and camp theme/main verse update.
+- Testing Agent review: Approved with no blocking findings for the template implementation, YouthForGod Camp branding update, camp theme/main verse update, confirmed address/registration tab behavior, and confirmed November 25-29 teaching schedule update.
 
 ## Phase 0 Verification Archive
 

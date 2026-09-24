@@ -4,7 +4,7 @@
 
 The project is a Vite application using React and TypeScript in strict mode. The app entry is `src/main.tsx`, which renders `src/app/App.tsx` and imports global tokens from `src/styles/globals.css`.
 
-The current product surface is YouthForGod Camp, implemented from the provided v9 camp template as a single-page React experience. It uses local React state for view selection, schedule day selection, and FAQ expansion. Registration is a direct link to the confirmed external destination.
+The current product surface is YouthForGod Camp, implemented from the provided v9 camp template as a single-page React experience. It uses local React state for view selection, schedule day selection, and FAQ expansion. Registration is a direct link to the confirmed external destination and opens in a new browser tab.
 
 ## Directory Structure
 
@@ -27,7 +27,7 @@ The current product surface is YouthForGod Camp, implemented from the provided v
 
 There is no app-level data layer or remote API.
 
-- `src/features/camp-site/content.ts` is the typed source for the confirmed theme, main verse, registration URL, provided template pillars, schedule days, and FAQs.
+- `src/features/camp-site/content.ts` is the typed source for the confirmed theme, main verse, camp date range, camp address, registration URL, provided template pillars, teaching schedule days, and FAQs.
 - `src/features/camp-site/CampSite.tsx` renders the template and owns only UI state.
 - `src/app/App.tsx` is a thin composition layer that renders the camp-site feature.
 - `src/assets/camp-selah-photo.jpg` is imported by the feature component so Vite fingerprints and optimizes it for production builds.
@@ -37,6 +37,10 @@ There is no app-level data layer or remote API.
 ## Routing
 
 React Router is not installed. Home, Schedule, and FAQ are in-page views because the provided v9 template models them as local page state, not separate URLs. Add React Router only after multiple confirmed routes or shareable URLs are required.
+
+## Schedule Content
+
+The active Schedule view uses the confirmed November 25-29 date range and the user-provided Wednesday-Sunday teaching outline. Exact year, arrival/departure times, prices, phone/contact number, transportation, and carpool details remain unconfirmed, so the app does not present those sample template values as facts.
 
 ## Styling
 

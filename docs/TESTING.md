@@ -4,7 +4,7 @@
 
 Each feature follows RED, GREEN, REFACTOR, VERIFY. Tests focus on user-visible behavior, accessibility, keyboard interaction, critical journeys, and regressions.
 
-The template implementation, YouthForGod Camp branding updates, camp theme, and registration destination were introduced with failing component tests first, then production code was added to pass those tests. Browser checks run the same critical visitor path on desktop Chromium, iPhone WebKit, and iPad Pro 11.
+The template implementation, YouthForGod Camp branding updates, camp theme, registration destination, confirmed address, registration new-tab behavior, and confirmed November 25-29 teaching schedule were introduced with failing component tests first, then production code was added to pass those tests. Browser checks run the same critical visitor path on desktop Chromium, iPhone WebKit, and iPad Pro 11.
 
 ## Tools
 
@@ -30,13 +30,14 @@ pnpm validate
 
 - `src/app/App.test.tsx`
   - Verifies the home view uses the provided template copy, YouthForGod Camp logo, Grace That Transforms theme, and Titus 2:11-14 ESV main verse.
-  - Verifies the Schedule view is reachable, defaults to Monday, and switches to Tuesday.
-  - Verifies the FAQ view is reachable, the accordion exposes `aria-expanded`, and answers appear on toggle.
-  - Verifies Register Now controls link to the confirmed registration destination.
+  - Verifies the Schedule view is reachable, displays November 25-29, defaults to November 25, switches to November 27, and excludes stale template date/logistics copy.
+  - Verifies the FAQ view is reachable, the accordion exposes `aria-expanded`, answers appear on toggle, and unconfirmed sample phone/price values are absent.
+  - Verifies the confirmed Strawberry Valley address renders in the site chrome and FAQ location answer.
+  - Verifies Register Now controls link to the confirmed registration destination, open a new tab, and include `rel="noopener noreferrer"`.
   - Runs `vitest-axe` for component-level accessibility.
 - `tests/e2e/foundation.spec.ts`
   - Opens the production preview build.
-  - Exercises Home, Schedule, FAQ, day selection, FAQ expansion, and Register Now link behavior.
+  - Exercises Home, Schedule, FAQ, day selection, FAQ expansion, confirmed date/address rendering, stale sample-content absence, and Register Now link behavior.
   - Runs `@axe-core/playwright`.
   - Fails on browser console errors and page errors.
   - Fails if the document has horizontal overflow.

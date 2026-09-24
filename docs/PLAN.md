@@ -103,3 +103,57 @@ Owner: Main Agent
 - Existing Home, Schedule, FAQ, and logo behavior remains intact.
 - Register Now links point to `https://app.camp-paradise.org/`.
 - The Wednesday-Sunday teaching outline is documented without replacing the schedule until explicitly confirmed.
+
+## Completed Milestone: Confirmed Address And Registration Tab Behavior
+
+Status: Complete
+
+Owner: Main Agent
+
+## Tasks
+
+- Complete: Record the confirmed Strawberry Valley address in requirements.
+- Complete: Planning Agent handoff for address and registration behavior.
+- Complete: Add RED tests for the confirmed address and new-tab registration links.
+- Complete: Implement the smallest code change.
+- Complete: Update affected documentation and changelog.
+- Complete: Run full quality gate.
+- Complete: Testing Agent review and approval.
+
+## Acceptance Criteria
+
+- The footer displays `12725 La Porte Rd, Strawberry Valley, CA 95981`.
+- The FAQ location answer uses the confirmed address.
+- Old Black Mountain and North Carolina location copy is removed from active UI.
+- Every Register Now link keeps `https://app.camp-paradise.org/` as its destination.
+- Every Register Now link opens in a new tab with `target="_blank"`.
+- Every Register Now link includes `rel="noopener noreferrer"`.
+- No directions, carpool logistics, phone number, or schedule/place details are invented.
+
+## Completed Milestone: Confirmed Camp Dates And Teaching Schedule
+
+Status: Complete
+
+Owner: Main Agent
+
+## Tasks
+
+- Complete: Record November 25-29 as the confirmed camp date range.
+- Complete: Planning Agent handoff for date and schedule update.
+- Complete: Add RED tests for confirmed date range and schedule labels.
+- Complete: Replace stale template schedule dates with confirmed Wednesday-Sunday teaching outline.
+- Complete: Remove sample price, phone, and schedule logistics from active UI.
+- Complete: Update affected documentation and changelog.
+- Complete: Run full quality gate.
+- Complete: Testing Agent review and approval.
+
+## Acceptance Criteria
+
+- The active UI displays `November 25-29`.
+- The visible Schedule view uses `Nov 25`, `Nov 26`, `Nov 27`, `Nov 28`, and `Nov 29`.
+- The Schedule view defaults to `Nov 25`.
+- The old sample date labels such as `Mon 22`, `Tue 23`, and `Fri-Sat` are removed from active UI.
+- The Schedule view no longer says `Sunday to Saturday · repeated all five weeks`.
+- The sample phone number, sample price, and sample arrival/departure/visitor logistics are removed from active UI.
+- The visible Schedule view uses only the confirmed Wednesday-Sunday teaching outline for daily content.
+- No year, exact arrival/departure times, prices, transportation details, or phone number are invented.

@@ -5,6 +5,8 @@ import campSelahPhoto from '@/assets/camp-selah-photo.jpg'
 import youthForGodLogo from '@/assets/updatedLogo2.png'
 
 import {
+  CAMP_ADDRESS,
+  CAMP_DATE_RANGE,
   CAMP_THEME,
   FAQS,
   PILLARS,
@@ -21,7 +23,7 @@ const pages: ReadonlyArray<{ id: CampPage; label: string }> = [
 
 function CampSite() {
   const [page, setPage] = useState<CampPage>('home')
-  const [selectedDay, setSelectedDay] = useState(1)
+  const [selectedDay, setSelectedDay] = useState(0)
   const [openFaqs, setOpenFaqs] = useState<Record<number, boolean>>({ 0: true })
 
   const activeDay = SCHEDULE_DAYS[selectedDay] ?? SCHEDULE_DAYS[0]
@@ -60,6 +62,8 @@ function CampSite() {
           <a
             href={REGISTRATION_URL}
             className="camp-nav__link camp-nav__link--gold"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Register Now
           </a>
@@ -83,7 +87,7 @@ function CampSite() {
       <footer className="camp-footer">
         <div className="camp-footer__inner">
           <Emblem variant="footer" />
-          <p>1140 Ridge Road, Black Mountain, NC</p>
+          <p>{CAMP_ADDRESS}</p>
         </div>
       </footer>
     </div>
@@ -128,7 +132,12 @@ type RegisterProps = {
 
 function RegisterLink({ className = '' }: RegisterProps) {
   return (
-    <a href={REGISTRATION_URL} className={`register-link ${className}`.trim()}>
+    <a
+      href={REGISTRATION_URL}
+      className={`register-link ${className}`.trim()}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       Register Now
     </a>
   )
@@ -161,10 +170,9 @@ function HomeView() {
             What we’re about
           </p>
           <p>
-            Six days in the Blue Ridge for students in grades 6–12. Mornings in
-            the Word, afternoons on the water, nights around a fire where the
-            singing goes late and nobody checks a phone. Cabins of eight, one
-            counselor who knows your name by Monday lunch.
+            {CAMP_DATE_RANGE} at YouthForGod Camp. Students gather around the
+            Word, worship, and the message of grace that saves freely, trains us
+            in holiness, and makes a people eager for good works.
           </p>
         </div>
       </section>
@@ -210,7 +218,7 @@ function ScheduleView({
     <>
       <section className="page-heading" aria-labelledby="schedule-heading">
         <h1 id="schedule-heading">The week</h1>
-        <p>Sunday to Saturday · repeated all five weeks</p>
+        <p>{CAMP_DATE_RANGE} · Grace That Transforms</p>
       </section>
 
       <div className="day-selector" role="group" aria-label="Choose a day">
@@ -251,27 +259,26 @@ function ScheduleView({
       <section className="logistics-section" aria-label="Schedule logistics">
         <div className="logistics-grid">
           <article>
-            <p className="script-heading">Arrival</p>
-            <h2>Sunday, 2–4 PM</h2>
+            <p className="script-heading">Dates</p>
+            <h2>{CAMP_DATE_RANGE}</h2>
             <p>
-              Check-in on the dining hall porch. Bring the signed health form;
-              medications go to the nurse at the same table.
+              The confirmed camp dates are November 25-29. The year and exact
+              arrival and departure times have not been confirmed yet.
             </p>
           </article>
           <article>
-            <p className="script-heading">Departure</p>
-            <h2>Saturday, by 10 AM</h2>
+            <p className="script-heading">Location</p>
+            <h2>{CAMP_ADDRESS}</h2>
             <p>
-              Cabin clean-out at 8, closing circle at 9, phones returned to
-              students at breakfast.
+              Transportation and carpool details have not been confirmed yet.
             </p>
           </article>
           <article>
-            <p className="script-heading">Visitors</p>
-            <h2>Thursday night</h2>
+            <p className="script-heading">Registration</p>
+            <h2>Register online</h2>
             <p>
-              Families are welcome at the 7 PM worship night and the cookout
-              after. RSVP by Tuesday.
+              Register Now opens the confirmed Camp Paradise registration page
+              in a new tab.
             </p>
           </article>
         </div>
@@ -290,7 +297,7 @@ function FaqView({ openFaqs, onToggleFaq }: FaqViewProps) {
     <>
       <section className="page-heading" aria-labelledby="faq-heading">
         <h1 id="faq-heading">Questions</h1>
-        <p>For parents &amp; students · (828) 555-0142</p>
+        <p>For parents &amp; students</p>
       </section>
 
       <section className="faq-section" aria-label="Frequently asked questions">

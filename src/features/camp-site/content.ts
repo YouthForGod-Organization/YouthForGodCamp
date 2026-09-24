@@ -38,6 +38,8 @@ export const CAMP_THEME: CampTheme = {
 }
 
 export const REGISTRATION_URL = 'https://app.camp-paradise.org/'
+export const CAMP_ADDRESS = '12725 La Porte Rd, Strawberry Valley, CA 95981'
+export const CAMP_DATE_RANGE = 'November 25-29'
 
 export const PILLARS: readonly Pillar[] = [
   {
@@ -59,217 +61,113 @@ export const PILLARS: readonly Pillar[] = [
 
 export const SCHEDULE_DAYS: readonly ScheduleDay[] = [
   {
-    date: 'Sun 21',
-    title: 'Sunday — Arrival',
-    note: 'A soft landing: bags in, names learned, one big meal, one short talk. Lights out early because nobody sleeps anyway.',
+    date: 'Nov 25',
+    title: 'Wednesday — Intro to camp',
+    note: 'Why we need grace, what grace is often mistaken for, and how costly grace in Christ urges holiness and transforms.',
     rows: [
       {
-        time: '2–4 PM',
-        what: 'Check-in, health forms, cabin assignments',
-        where: 'Dining hall porch',
+        time: 'Theme',
+        what: 'Why we need grace.',
+        where: 'Grace That Transforms',
       },
       {
-        time: '4:30',
-        what: "Cabin meeting — the eight people you'll know best",
-        where: 'Cabins',
+        time: 'Focus',
+        what: 'Grace is not cheap, and grace is not a license to sin.',
+        where: 'Intro to camp',
       },
       {
-        time: '5:30',
-        what: 'Dinner and the all-camp welcome',
-        where: 'Dining hall',
+        time: 'Truth',
+        what: "Grace came at the cost of Jesus's life, urges holiness, and is powerful to transform.",
+        where: 'Titus 2:11-14',
       },
-      {
-        time: '7:00',
-        what: 'Opening session — Psalm 46, the week ahead',
-        where: 'Pavilion',
-      },
-      {
-        time: '8:30',
-        what: "Fire, s'mores, cabin games",
-        where: 'Lower fire ring',
-      },
-      { time: '10:30', what: 'Lights out', where: 'Cabins' },
     ],
   },
   {
-    date: 'Mon 22',
-    title: 'Monday — The first full day',
-    note: 'The rhythm every weekday follows: Word in the morning, water in the afternoon, worship at night.',
+    date: 'Nov 26',
+    title: "Thursday — Man's desperate need",
+    note: 'The Law condemned us, restrained corruption, and could not transform the heart.',
     rows: [
       {
-        time: '7:00',
-        what: 'Polar bear swim (optional, cold, popular)',
-        where: 'Lake dock',
-      },
-      { time: '8:00', what: 'Breakfast', where: 'Dining hall' },
-      {
-        time: '9:00',
-        what: 'Morning session — teaching',
-        where: 'Pavilion',
+        time: 'Theme',
+        what: "Man's desperate need for grace.",
+        where: 'Grace That Transforms',
       },
       {
-        time: '10:15',
-        what: 'Small groups — eight students, one leader, open Bibles',
-        where: 'Cabin porches',
+        time: 'Focus',
+        what: 'The Law condemned us and kept us from total corruption.',
+        where: 'Galatians',
       },
       {
-        time: '12:00',
-        what: 'Lunch and rest hour',
-        where: 'Dining hall',
+        time: 'Truth',
+        what: 'The Law could not transform us.',
+        where: 'Galatians 3:21 and Ezekiel 36',
       },
-      {
-        time: '2:00',
-        what: 'Free rec — lake, climbing wall, blob, trails, courts',
-        where: 'Waterfront and ridge',
-      },
-      {
-        time: '4:30',
-        what: 'Cabin competition, round one',
-        where: 'Field',
-      },
-      { time: '6:00', what: 'Dinner', where: 'Dining hall' },
-      {
-        time: '7:30',
-        what: 'Evening worship and message',
-        where: 'Pavilion',
-      },
-      {
-        time: '9:15',
-        what: 'Cabin devotions, then canteen',
-        where: 'Cabins',
-      },
-      { time: '10:30', what: 'Lights out', where: 'Cabins' },
     ],
   },
   {
-    date: 'Tue 23',
-    title: 'Tuesday — Trail day',
-    note: 'Cabins hike out after small groups. Sack lunches on the summit, back by rec time, blisters compared at dinner.',
+    date: 'Nov 27',
+    title: "Friday — Grace is God's free gift",
+    note: 'Grace is a free gift of God, embodied in Jesus, and given to save, train, and turn hearts toward his glory.',
     rows: [
       {
-        time: '9:00',
-        what: 'Morning session — teaching',
-        where: 'Pavilion',
-      },
-      { time: '10:15', what: 'Small groups', where: 'Cabin porches' },
-      {
-        time: '11:00',
-        what: 'Hike out by cabin, sack lunch at the overlook',
-        where: 'Selah Ridge',
+        time: 'Theme',
+        what: 'Grace is a free gift of God, not of works.',
+        where: 'Romans 3:24 and Romans 5:15',
       },
       {
-        time: '3:00',
-        what: 'Return, lake swim, canteen open',
-        where: 'Waterfront',
+        time: 'Focus',
+        what: 'Jesus is full of grace and truth; grace appeared and was embodied in him.',
+        where: 'John 1 and 1 John 1',
       },
-      { time: '6:00', what: 'Cookout dinner', where: 'Fire ring' },
       {
-        time: '7:30',
-        what: 'Evening worship and message',
-        where: 'Pavilion',
+        time: 'Gifts',
+        what: "Grace brings salvation to all, trains us in righteous living, and gives a heart that longs for God's glory and Christ's appearing.",
+        where: 'Titus 2:11-14',
       },
-      { time: '9:15', what: 'Cabin devotions', where: 'Cabins' },
     ],
   },
   {
-    date: 'Wed 24',
-    title: 'Wednesday — Service and games',
-    note: 'Half the day goes to neighbors: trail repair, a food pantry run, yard work down the road. The other half is the messiest game of the week.',
+    date: 'Nov 28',
+    title: 'Saturday — The transforming power of grace',
+    note: 'Christ redeems and purifies, creating a new people who belong to him and are zealous for good works.',
     rows: [
       {
-        time: '9:00',
-        what: 'Morning session — teaching',
-        where: 'Pavilion',
+        time: 'Theme',
+        what: 'The transforming power of grace.',
+        where: 'Grace That Transforms',
       },
       {
-        time: '10:15',
-        what: 'Service projects by cabin',
-        where: 'Camp and town',
+        time: 'Focus',
+        what: 'Christ redeems and purifies: he bought and cleansed his people.',
+        where: 'Titus 2:14',
       },
       {
-        time: '1:00',
-        what: 'Lunch back at camp, rest hour',
-        where: 'Dining hall',
+        time: 'Truth',
+        what: 'Grace creates a new people for Christ, his own possession, zealous for good works.',
+        where: 'Titus 2:14',
       },
-      {
-        time: '2:30',
-        what: 'All-camp mud game',
-        where: 'Lower field',
-      },
-      {
-        time: '4:30',
-        what: "Lake swim (mandatory, for everyone's sake)",
-        where: 'Lake dock',
-      },
-      {
-        time: '7:30',
-        what: 'Evening worship and message',
-        where: 'Pavilion',
-      },
-      { time: '9:15', what: 'Cabin devotions', where: 'Cabins' },
     ],
   },
   {
-    date: 'Thu 25',
-    title: 'Thursday — Family night',
-    note: 'The night families are invited up. Worship at seven, cookout after, students showing parents around until dark.',
+    date: 'Nov 29',
+    title: 'Sunday — Declare these things',
+    note: 'Paul ends by urging Titus to declare these things, exhort, and rebuke with all authority.',
     rows: [
       {
-        time: '9:00',
-        what: 'Morning session — teaching',
-        where: 'Pavilion',
-      },
-      { time: '10:15', what: 'Small groups', where: 'Cabin porches' },
-      {
-        time: '2:00',
-        what: 'Cabin competition finals — the painted paddle',
-        where: 'Field and waterfront',
+        time: 'Theme',
+        what: 'Declare these things.',
+        where: 'Titus 2:15',
       },
       {
-        time: '5:00',
-        what: 'Families arrive, cabin tours',
-        where: 'All camp',
+        time: 'Exhort',
+        what: 'Strongly encourage with the authority of the Word.',
+        where: 'Titus 2:15',
       },
       {
-        time: '7:00',
-        what: 'Worship night — families welcome',
-        where: 'Pavilion',
+        time: 'Rebuke',
+        what: 'Rebuke with all authority, letting no one disregard the message.',
+        where: 'Titus 2:15',
       },
-      { time: '8:30', what: 'Cookout and dessert', where: 'Fire ring' },
-      { time: '10:30', what: 'Lights out', where: 'Cabins' },
-    ],
-  },
-  {
-    date: 'Fri–Sat',
-    title: 'Friday night and Saturday — Sending',
-    note: 'Friday ends late at the fire; Saturday is short on purpose. Students leave with a letter from their counselor and a plan for home.',
-    rows: [
-      {
-        time: 'Fri 7:30',
-        what: 'Final session — commitment and commissioning',
-        where: 'Pavilion',
-      },
-      {
-        time: 'Fri 9:00',
-        what: 'Fire circle — students share what changed',
-        where: 'Upper fire ring',
-      },
-      {
-        time: 'Fri 11:30',
-        what: 'Late lights out (the one exception)',
-        where: 'Cabins',
-      },
-      {
-        time: 'Sat 8:00',
-        what: 'Breakfast and cabin clean-out',
-        where: 'Dining hall',
-      },
-      {
-        time: 'Sat 9:00',
-        what: 'Closing circle, counselor letters, phones returned',
-        where: 'Pavilion',
-      },
-      { time: 'Sat 10:00', what: 'Pickup', where: 'Dining hall porch' },
     ],
   },
 ]
@@ -288,7 +186,7 @@ export const FAQS: readonly Faq[] = [
   {
     question: 'What does the week cost?',
     answer:
-      '$525 covers lodging, all meals, activities and the camp T-shirt, with a $100 deposit to hold the spot. Nobody is turned away for cost: scholarships cover up to full tuition and the director reviews the one-page application privately.',
+      'Pricing has not been confirmed yet. Register Now opens the confirmed registration page for available registration details.',
   },
   {
     question: 'How are students supervised?',
@@ -312,7 +210,6 @@ export const FAQS: readonly Faq[] = [
   },
   {
     question: 'Where is camp, and can we carpool?',
-    answer:
-      "1140 Ridge Road in Black Mountain, North Carolina — 25 minutes east of Asheville. Charter buses run from Charlotte, Greenville and Raleigh for $45 round trip, and we'll connect you with families nearby if you'd rather drive together.",
+    answer: `${CAMP_ADDRESS}. Transportation and carpool details have not been confirmed yet.`,
   },
 ]

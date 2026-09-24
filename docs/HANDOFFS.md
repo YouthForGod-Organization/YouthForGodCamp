@@ -292,3 +292,157 @@ Unresolved questions:
 - Is Selah Fellowship still the operating organization, or should a different organization be listed?
 
 Recommended next action: run full validation and request Testing Agent review.
+
+## Planning Agent Handoff: Confirmed Address And Registration Tab Behavior
+
+Reviewed: `AGENTS.md`, requirements, architecture, plan, `src/features/camp-site/content.ts`, `src/features/camp-site/CampSite.tsx`, component tests, and Playwright smoke test.
+
+Goal: update YouthForGod Camp with the confirmed address `12725 La Porte Rd, Strawberry Valley, CA 95981` and make every Register Now link to `https://app.camp-paradise.org/` open in a new tab.
+
+Acceptance criteria:
+
+- Requirements record the confirmed address.
+- Footer displays the confirmed address.
+- FAQ location answer uses the confirmed address and does not retain old Black Mountain transportation copy.
+- Every Register Now link keeps the confirmed registration destination.
+- Every Register Now link opens with `target="_blank"` and `rel="noopener noreferrer"`.
+- Old template address strings are removed from active UI.
+- Full quality gate passes.
+
+Risks:
+
+- Other template geography and logistics remain unconfirmed, including Blue Ridge wording, `Selah Ridge`, the sample phone number, pricing, dates, and transportation details.
+- Do not invent directions, carpool details, maps, or phone/contact information.
+
+Recommended next action: Main Agent writes RED tests, implements the small content/link update, validates, updates docs, and requests Testing Agent review.
+
+## Main Agent Handoff: Confirmed Address And Registration Implementation
+
+Reviewed: Planning Agent handoff, Testing Agent RED confirmation, requirements, architecture, plan, typed content, React component implementation, component tests, Playwright smoke test, and affected docs.
+
+Changed:
+
+- Added `CAMP_ADDRESS` to `src/features/camp-site/content.ts`.
+- Updated the footer to render the confirmed Strawberry Valley address.
+- Updated the FAQ location answer to use the confirmed address and state that transportation/carpool details are not confirmed yet.
+- Added `target="_blank"` and `rel="noopener noreferrer"` to every Register Now link.
+- Added component tests for the confirmed address, FAQ location answer, and external registration link attributes.
+- Added Playwright smoke coverage for the confirmed address, FAQ location answer, and external registration link attributes.
+- Updated requirements, architecture, testing, decisions, changelog, plan, README, and handoffs.
+
+Tests run:
+
+- RED `pnpm test`: Failed as expected on missing confirmed address, stale FAQ address, and missing new-tab registration attributes.
+- GREEN `pnpm test`: Passed, 5 component tests.
+- `pnpm validate`: Passed after allowing the local preview server for Playwright.
+- Playwright projects: Passed on Chromium, mobile WebKit, and iPad.
+
+Unresolved questions:
+
+- Should remaining template geography such as "Blue Ridge" and `Selah Ridge` be removed or replaced?
+- What phone number, transportation/carpool details, pricing, dates, policies, and schedule/place names are final?
+- Should the Wednesday-Sunday teaching outline replace or supplement the visible Schedule view?
+
+Recommended next action: wait for final camp files and design references before changing remaining template content.
+
+## Testing Agent Handoff: Confirmed Address And Registration Approval
+
+Reviewed: requirements, plan, architecture, testing docs, decisions, README, handoffs, typed content, CampSite implementation, component tests, and Playwright smoke test.
+
+Findings:
+
+- Implementation satisfies the feature behavior: `CAMP_ADDRESS` is centralized, footer renders it, FAQ uses it, and Register Now links use `target="_blank"` with `rel="noopener noreferrer"`.
+- Tests are behavior-focused and cover all Register Now links, the FAQ location answer, address rendering, accessibility, browser console errors, and horizontal overflow.
+- Initial documentation finding: `docs/PLAN.md` still marked the milestone in progress. Resolution: Main Agent updated the milestone to complete after validation and Testing Agent review.
+
+Checks run:
+
+- Testing Agent focused `pnpm test`: Passed, 5 component tests.
+- Main Agent `pnpm validate`: Passed after allowing the local preview server for Playwright.
+
+Approval: Testing Agent approved the confirmed address and registration tab behavior after the plan source of truth was updated.
+
+Residual risks:
+
+- Other template content remains unconfirmed: Blue Ridge wording, schedule place names, phone number, pricing, dates, transportation details, and policies.
+
+Recommended next action: confirm or replace the remaining template details before production launch.
+
+## Planning Agent Handoff: Confirmed Camp Dates And Teaching Schedule
+
+Reviewed: `AGENTS.md`, requirements, architecture, plan, README, testing docs, changelog, typed content, CampSite implementation, component tests, and Playwright smoke test.
+
+Goal: record and display the confirmed camp date range, November 25-29, without inventing a year, exact times, prices, transportation, or other logistics.
+
+Acceptance criteria:
+
+- Requirements record November 25-29 as the confirmed date range.
+- Requirements do not imply a confirmed year.
+- Active UI displays November 25-29.
+- Schedule view no longer shows stale template labels such as `Sun 21`, `Mon 22`, `Tue 23`, `Wed 24`, `Thu 25`, or `Fri-Sat`.
+- Schedule view no longer says `Sunday to Saturday · repeated all five weeks`.
+- Schedule defaults to the first confirmed date, `Nov 25`.
+- Schedule content uses only the confirmed Wednesday-Sunday teaching outline.
+- Exact arrival/departure times, prices, transportation, phone, and logistics are not invented.
+
+Risks:
+
+- The year is unconfirmed.
+- Current template copy includes other unconfirmed details beyond the schedule.
+- Removing sample schedule logistics may surface other sample FAQ content that should not be presented as confirmed facts.
+
+Recommended next action: Main Agent writes RED tests, replaces the sample schedule with the teaching outline, removes unconfirmed sample logistics, validates, and requests Testing Agent review.
+
+## Main Agent Handoff: Confirmed Camp Dates And Teaching Schedule Implementation
+
+Reviewed: Planning Agent handoff, Testing Agent RED confirmation, requirements, plan, content module, CampSite implementation, component tests, Playwright smoke test, and affected documentation.
+
+Changed:
+
+- Added `CAMP_DATE_RANGE` with `November 25-29` to typed content.
+- Replaced the sample Sunday-Saturday schedule with the confirmed November 25-29 Wednesday-Sunday teaching outline.
+- Changed schedule default selection from the old Monday sample to `Nov 25`.
+- Removed sample arrival/departure/visitor logistics from the visible Schedule view.
+- Removed the sample `(828) 555-0142` phone number from the FAQ heading.
+- Replaced the sample `$525` FAQ pricing answer with unconfirmed-status copy.
+- Added component and Playwright tests for the confirmed date range, confirmed schedule labels, default day, stale sample-content absence, and no displayed year.
+- Updated requirements, architecture, testing docs, decisions, changelog, plan, README, and handoffs.
+
+Tests run:
+
+- RED `pnpm test`: Failed as expected on missing November 25-29 and stale sample schedule content.
+- GREEN `pnpm test`: Passed, 5 component tests.
+- `pnpm validate`: Passed after allowing the local preview server for Playwright.
+- Playwright projects: Passed on Chromium, mobile WebKit, and iPad.
+
+Unresolved questions:
+
+- What year should be displayed with November 25-29, if any?
+- What are the confirmed arrival and departure times?
+- Which remaining FAQ and template details are final, including supervision, phone policy, allergies, packing list, ages, activities, and legal/safety copy?
+
+Recommended next action: collect final camp files/details before converting remaining template copy into production facts.
+
+## Testing Agent Handoff: Confirmed Camp Dates And Teaching Schedule Approval
+
+Reviewed: requirements, plan, architecture, testing docs, changelog, decisions, README, typed content, CampSite implementation, component tests, and Playwright smoke test.
+
+Findings:
+
+- Implementation behavior is approved. The UI displays November 25-29, uses `Nov 25` through `Nov 29`, defaults to `Nov 25`, and uses the confirmed teaching outline.
+- Tests are approved. They cover date rendering, stale sample schedule labels/logistics absence, no displayed year, sample price/phone removal, browser accessibility, console errors, and horizontal overflow.
+- Initial documentation finding: `docs/PLAN.md` still marked the milestone in progress. Resolution: Main Agent updated the milestone to complete after validation and Testing Agent review.
+
+Checks run:
+
+- Main Agent `pnpm validate`: Passed after allowing the local preview server for Playwright.
+- Testing Agent reviewed files and reported no implementation or test findings.
+
+Approval: Testing Agent approved the confirmed November 25-29 teaching schedule update after the plan source of truth was updated.
+
+Residual risks:
+
+- The year remains unconfirmed.
+- Some non-date template content remains active and should be confirmed or replaced before launch.
+
+Recommended next action: confirm the year, arrival/departure times, and remaining production content.
