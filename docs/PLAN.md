@@ -1,5 +1,84 @@
 # Plan
 
+## Current Update: Readable Bilingual Hero Theme
+
+Status: Complete
+
+- Planning approved a sans-serif English hero h1 with "Преображающая благодать" directly underneath in a Russian-language paragraph.
+- Scope: theme data, hero rendering and responsive CSS, existing home/browser assertions, screenshots, and requirements/design/changelog documentation.
+- Acceptance: readable English and Russian theme, correct language annotation, no overflow on phones/tablets/desktop, and unchanged English description.
+- Verification: existing home assertion confirmed RED for missing Russian text; full `pnpm validate` passed (9 component tests, 3 browser checks), desktop/mobile screenshots visually reviewed, and independent review approved with no findings.
+
+## Current Update: Black-and-White About Photos
+
+Status: Complete
+
+- Scope: apply a CSS grayscale filter to the four About photos.
+- Acceptance: all four photos appear black and white across screen sizes; layout and source image files stay intact.
+- Verification: existing full `pnpm validate` gate, screenshot inspection, and independent review. No new test is needed for this reversible styling change.
+- Completed: independent review approved, all 9 component tests and 3 browser checks passed, and grayscale was visually confirmed.
+
+## Current Update: Illustrated About Subsections
+
+Status: Complete
+
+Owner: Main Agent
+
+- Planning approved four semantic subsections with short copy and distinct local photos; the user authorized sourced photos as an alternative to generation.
+- Files: new AboutSection component, CampSite composition, CSS, four local JPEGs, existing home/browser tests, and requirements/design/architecture/asset/testing docs and changelog.
+- Acceptance: preserve heading and dates; display Sound preaching, Christian fellowship, Prayer, and Music with relevant images; use two columns at 700px and above and one column on phones.
+- Risks: image weight and layout shift, misleading stock-photo descriptions, poor crops, and overflow. Use compressed 960 × 640 local images, truthful alt text, fixed dimensions, lazy loading, and documented source credits.
+- Testing Agent confirmed RED before implementation. Verify loaded images, heading structure, accessibility, and responsive layout, then run the full `pnpm validate` gate.
+- Completed: independent review approved without findings; full `pnpm validate` passed (9 component tests and 3 browser checks). Desktop and mobile section screenshots were visually reviewed. Screenshot capture hides the sticky navigation only during capture so all subsection content is visible.
+
+## Current Update: Remove Service Attributions
+
+Status: Complete
+
+Owner: Main Agent
+
+- Plan: remove the evening-service leader parameter, church arguments, and "Led by" detail from typed schedule content; update existing assertions and affected docs.
+- Acceptance: every evening service retains its time and event name, with no church attribution. Teaching references and prayer-hour placeholders remain intact.
+- Verification: planning review approved; updated existing tests confirmed RED for the three attributions; independent review approved with no findings. Full `pnpm validate` passed, including 9 component tests and 3 browser checks.
+
+## Current Update: Wednesday Evening Schedule
+
+Status: Complete
+
+Owner: Main Agent
+
+- Scope: add the five supplied Wednesday evening events to typed content and update schedule documentation and the existing Wednesday test.
+- Acceptance: arrival remains from 3:00 PM; service at 6:30 PM, dinner at 8:00 PM, fellowship at 9:00 PM, tea and sauna at 11:00 PM, and lights out at 12:59 AM appear in order.
+- Edge cases: keep the next-day lights-out detail and untimed introduction; do not invent a Wednesday service leader.
+- Verification: Planning Agent approved the plan; Main Agent confirmed RED and implemented the change; independent testing review approved with no findings. Full `pnpm validate` passed, including 9 component tests and 3 browser checks.
+
+## Current Update: Full English Camp Schedule
+
+Status: Complete
+
+Owner: Main Agent
+
+- Planning Agent approved translating the supplied timetable and attaching all nine preaching topics to their lesson slots.
+- Files: typed schedule content, Schedule view, schedule detail styling, component/browser tests, and related documentation.
+- Acceptance: Wednesday arrivals from 3:00 PM; Thursday-Saturday's 12 events, three lessons per day, correct references and evening-service churches; Sunday's five events and 3:00 PM departure.
+- Edge cases: Wednesday teaching has no assigned time; blank prayer speakers remain to be announced; lights out stays 12:59 AM with next-day clarification; no year or additional logistics invented.
+- Verification: Testing Agent confirms RED, checks all days and lesson assignments, then runs the full `pnpm validate` quality gate with responsive and accessibility checks on the expanded schedule.
+- Documentation: update requirements, architecture, translated program, testing coverage, and changelog.
+- Completed: Testing Agent confirmed RED and approved the implementation with no findings. Full `pnpm validate` passed: formatting, lint, types, 9 component tests, coverage, production build, and 3 desktop/iPhone/iPad browser checks.
+
+## Current Update: Simple About Section
+
+Status: Complete
+
+Owner: Main Agent
+
+- Planning Agent approved replacing the introduction and numbered pillars with one semantic "What we are about?" section.
+- Acceptance: sound preaching, Christian fellowship, prayer, and music are visible; old numbered pillars are removed; camp dates, theme, verse, and navigation remain intact.
+- Scope: home rendering, unused pillar data/styles, existing home assertion, and affected documentation. No dependencies or new camp details.
+- Verification: Testing Agent confirms the updated assertion fails before implementation, then reviews the change and runs `pnpm validate`.
+- Risk: avoid duplicate about sections and preserve responsive spacing and accessible heading structure.
+- Completed: Testing Agent confirmed RED, approved the implementation with no findings, and passed the full `pnpm validate` gate, including desktop, iPhone, and iPad browser checks.
+
 ## Current Milestone: Phase 0 Engineering Foundation
 
 Status: Complete

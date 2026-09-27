@@ -23,6 +23,19 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
       name: /grace that transforms/i,
     }),
   ).toBeVisible()
+  const hero = page.getByRole('region', { name: 'Grace That Transforms' })
+  await expect(hero.getByText('Преображающая благодать')).toBeVisible()
+  await expect(hero.getByText('Преображающая благодать')).toHaveAttribute(
+    'lang',
+    'ru',
+  )
+  expect(
+    await hero.evaluate((element) => element.scrollWidth > element.clientWidth),
+  ).toBe(false)
+  await hero.screenshot({
+    path: test.info().outputPath('hero.png'),
+    style: '.camp-header { visibility: hidden; }',
+  })
   await expect(page.getByText(/titus 2:11-14 esv/i)).toBeVisible()
   await expect(page.getByText(/the grace of god has appeared/i)).toBeVisible()
   await expect(
@@ -33,6 +46,33 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
     page.getByText(/12725 la porte rd, strawberry valley, ca 95981/i),
   ).toBeVisible()
   await expect(page.getByText(/november 25-29/i).first()).toBeVisible()
+
+  const about = page.getByRole('region', { name: 'What we are about?' })
+  await expect(about.getByRole('heading', { level: 3 })).toHaveCount(4)
+  const aboutImages = about.getByRole('img')
+  await expect(aboutImages).toHaveCount(4)
+  for (const image of await aboutImages.all()) {
+    await image.scrollIntoViewIfNeeded()
+    await expect(image).toBeVisible()
+    await expect
+      .poll(() =>
+        image.evaluate(
+          (element: HTMLImageElement) =>
+            element.complete && element.naturalWidth > 0,
+        ),
+      )
+      .toBe(true)
+  }
+  expect(
+    await about.evaluate(
+      (element) => element.scrollWidth > element.clientWidth,
+    ),
+  ).toBe(false)
+  await about.screenshot({
+    path: test.info().outputPath('about.png'),
+    // Hide the sticky header only in the section's review screenshot.
+    style: '.camp-header { visibility: hidden; }',
+  })
 
   await page.getByRole('button', { name: /schedule/i }).click()
   await expect(
@@ -68,6 +108,33 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
   await expect(
     page.getByText(/friday — grace is god's free gift/i),
   ).toBeVisible()
+  const friday = page.getByRole('list', { name: /friday.*events/i })
+  await expect(friday.getByRole('listitem')).toHaveCount(12)
+  await expect(
+    friday.getByRole('listitem').filter({ hasText: /lesson 1/i }),
+  ).toContainText(/10(?::00)?\s*am/i)
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth,
+    ),
+  ).toBe(false)
+
+  await page.getByRole('button', { name: /nov 29/i }).click()
+  await expect(page.getByRole('button', { name: /nov 29/i })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  const sunday = page.getByRole('list', { name: /sunday.*events/i })
+  await expect(sunday.getByRole('listitem')).toHaveCount(5)
+  await expect(
+    sunday.getByRole('listitem').filter({ hasText: /depart/i }),
+  ).toContainText(/3(?::00)?\s*pm/i)
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth,
+    ),
+  ).toBe(false)
 
   await page.getByRole('button', { name: /faq/i }).click()
   await expect(page.getByText(/\(828\) 555-0142/i)).toHaveCount(0)

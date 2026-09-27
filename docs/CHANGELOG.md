@@ -22,6 +22,13 @@
 
 ### Changed
 
+- Changed the hero theme to a readable sans-serif heading with "Преображающая благодать" directly below the English title.
+- Applied a black-and-white CSS filter to the four About photos.
+- Expanded "What we are about?" into four responsive subsections with locally hosted Unsplash photos, short descriptions, and accessible headings for sound preaching, Christian fellowship, prayer, and music.
+- Removed all "Led by" church attributions from the schedule while retaining evening-service events and times.
+- Added Wednesday's evening service, dinner, fellowship, tea and sauna, and next-morning lights out at the supplied times.
+- Translated and summarized the supplied daily program in English, attached all nine preaching topics to their lesson times, and added evening-service church assignments and confirmed arrival/departure times.
+- Simplified the home page into one "What we are about?" section about sound preaching, Christian fellowship, prayer, and music, removing the numbered template pillars.
 - Replaced the Phase 0 placeholder UI with the Home, Schedule, and FAQ views.
 - Updated metadata, design tokens, architecture docs, testing docs, decisions, and asset inventory for the template implementation.
 - Adjusted the filled gold CTA color from the source template so browser axe contrast checks pass.
@@ -41,7 +48,13 @@
 
 ### Verification
 
-- `pnpm test`: Passed, 5 component tests.
+- Readable bilingual hero and grayscale About photos: full `pnpm validate` passed (9 component tests and 3 browser checks), independent review approved, and screenshots visually verified.
+- Illustrated About subsections: RED confirmed, independent review approved, and full `pnpm validate` passed (9 component tests and 3 desktop/iPhone/iPad checks), including successful image loading. Desktop and mobile screenshots visually reviewed.
+- Service attribution removal: existing tests confirmed RED; independent review and full `pnpm validate` passed (9 component tests and 3 browser checks).
+- Wednesday evening schedule: confirmed RED before implementation, independent review approved, and full `pnpm validate` passed (9 component tests and 3 browser checks).
+- Full English schedule: Testing Agent approved all five days, nine lesson assignments, service leaders, arrival/departure times, and next-day lights out. Full `pnpm validate` passed, including 9 component tests and 3 responsive browser checks.
+- Simple about section: Testing Agent confirmed RED and approved the change; `pnpm validate` passed, including all 5 component tests and 3 browser checks.
+- `pnpm test`: Passed, 9 component tests.
 - `pnpm lint`: Passed.
 - `pnpm typecheck`: Passed.
 - `pnpm test:coverage`: Passed.

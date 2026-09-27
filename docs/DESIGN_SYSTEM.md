@@ -2,9 +2,15 @@
 
 ## Current State
 
-The active design is YouthForGod Camp, adapted from the provided v9 camp template. It uses a warm cream ground, forest green primary color, gold accent, script-style display heading, clean sans body type, centered sticky navigation, the provided Youth For God logo, and a diagonal hero image on wider screens.
+The active design is YouthForGod Camp, adapted from the provided v9 camp template. It uses a warm cream ground, forest green primary color, gold accent, a readable sans-serif hero heading, script-style section headings, clean sans body type, centered sticky navigation, the provided Youth For God logo, and a diagonal hero image on wider screens.
+
+The hero uses the existing sans font at weight 600, with explicit sizes from 2.5rem on phones to 4.5rem on large screens. The Russian theme translation sits directly below the English h1 in smaller, regular-weight type with `lang="ru"`. Allow natural wrapping without horizontal overflow.
 
 The home page presents the confirmed theme "Grace That Transforms" and a long Titus 2:11-14 ESV blockquote. Long scripture text should stay constrained to a readable line length and must not be uppercased.
+
+The About section uses four flat photographic subsections with landscape 3:2 images, forest-green h3 headings, short descriptions, and subtle bottom dividers. Keep a two-column grid at 700px and above, one column below that, with generous gaps and no text overlays on photos.
+
+Apply `filter: grayscale(1)` to the About photos for a consistent black-and-white treatment. The source images remain in color; the filter affects only their display.
 
 ## Tokens
 

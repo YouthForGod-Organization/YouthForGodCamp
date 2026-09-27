@@ -3,7 +3,7 @@ export type CampPage = 'home' | 'schedule' | 'faq'
 export type ScheduleRow = {
   time: string
   what: string
-  where: string
+  detail?: string
 }
 
 export type ScheduleDay = {
@@ -13,12 +13,6 @@ export type ScheduleDay = {
   rows: readonly ScheduleRow[]
 }
 
-export type Pillar = {
-  num: string
-  title: string
-  body: string
-}
-
 export type Faq = {
   question: string
   answer: string
@@ -26,12 +20,14 @@ export type Faq = {
 
 export type CampTheme = {
   title: string
+  titleRu: string
   verse: string
   reference: string
 }
 
 export const CAMP_THEME: CampTheme = {
   title: 'Grace That Transforms',
+  titleRu: 'Преображающая благодать',
   verse:
     'For the grace of God has appeared, bringing salvation for all people, training us to renounce ungodliness and worldly passions, and to live self-controlled, upright, and godly lives in the present age, waiting for our blessed hope, the appearing of the glory of our great God and Savior Jesus Christ, who gave himself for us to redeem us from all lawlessness and to purify for himself a people for his own possession who are zealous for good works.',
   reference: 'Titus 2:11-14 ESV',
@@ -41,44 +37,65 @@ export const REGISTRATION_URL = 'https://app.camp-paradise.org/'
 export const CAMP_ADDRESS = '12725 La Porte Rd, Strawberry Valley, CA 95981'
 export const CAMP_DATE_RANGE = 'November 25-29'
 
-export const PILLARS: readonly Pillar[] = [
-  {
-    num: 'One',
-    title: 'Scripture, taught straight',
-    body: 'One book, all week. Morning teaching in the pavilion, then an hour in small groups where students do the reading themselves. Hard questions especially welcome.',
-  },
-  {
-    num: 'Two',
-    title: 'Afternoons outside',
-    body: 'Lake swim, climbing wall, trail runs, the blob, canoe races that get competitive fast. Cabins compete all week for a painted paddle that matters enormously.',
-  },
-  {
-    num: 'Three',
-    title: 'Counselors who stay',
-    body: 'Every leader is background-checked, CPR-certified and trained for two weeks before campers arrive. Most come back three summers running.',
-  },
-]
+type Lesson = {
+  topic: string
+  detail?: string
+}
+
+function teachingDayRows(
+  lessons: readonly [Lesson, Lesson, Lesson],
+): readonly ScheduleRow[] {
+  const lessonRow = (index: 0 | 1 | 2, time: string): ScheduleRow => ({
+    time,
+    what: `Lesson ${index + 1} — ${lessons[index].topic}`,
+    detail: lessons[index].detail,
+  })
+
+  return [
+    { time: '8:00 AM', what: 'Wake up' },
+    {
+      time: '8:30 AM',
+      what: 'Prayer hour',
+      detail: 'Speaker to be announced.',
+    },
+    { time: '9:00 AM', what: 'Breakfast' },
+    lessonRow(0, '10:00 AM'),
+    lessonRow(1, '11:30 AM'),
+    { time: '2:00 PM', what: 'Lunch' },
+    lessonRow(2, '5:00 PM'),
+    {
+      time: '6:30 PM',
+      what: 'Evening service',
+    },
+    { time: '8:00 PM', what: 'Dinner' },
+    { time: '9:00 PM', what: 'Fellowship' },
+    { time: '11:00 PM', what: 'Tea and sauna' },
+    {
+      time: '12:59 AM',
+      what: 'Lights out',
+      detail: 'The following morning (next day).',
+    },
+  ]
+}
 
 export const SCHEDULE_DAYS: readonly ScheduleDay[] = [
   {
     date: 'Nov 25',
     title: 'Wednesday — Intro to camp',
-    note: 'Why we need grace, what grace is often mistaken for, and how costly grace in Christ urges holiness and transforms.',
+    note: 'Introduction: Why we need grace. Grace is neither cheap nor something we produce ourselves, and it is not permission to sin. It cost Jesus his life, calls us to holiness, and has power to transform us. Teaching time to be announced.',
     rows: [
       {
-        time: 'Theme',
-        what: 'Why we need grace.',
-        where: 'Grace That Transforms',
+        time: 'From 3:00 PM',
+        what: 'Arrival',
       },
+      { time: '6:30 PM', what: 'Evening service' },
+      { time: '8:00 PM', what: 'Dinner' },
+      { time: '9:00 PM', what: 'Fellowship' },
+      { time: '11:00 PM', what: 'Tea and sauna' },
       {
-        time: 'Focus',
-        what: 'Grace is not cheap, and grace is not a license to sin.',
-        where: 'Intro to camp',
-      },
-      {
-        time: 'Truth',
-        what: "Grace came at the cost of Jesus's life, urges holiness, and is powerful to transform.",
-        where: 'Titus 2:11-14',
+        time: '12:59 AM',
+        what: 'Lights out',
+        detail: 'The following morning (next day).',
       },
     ],
   },
@@ -86,88 +103,74 @@ export const SCHEDULE_DAYS: readonly ScheduleDay[] = [
     date: 'Nov 26',
     title: "Thursday — Man's desperate need",
     note: 'The Law condemned us, restrained corruption, and could not transform the heart.',
-    rows: [
+    rows: teachingDayRows([
+      { topic: "Man's desperate need for grace" },
       {
-        time: 'Theme',
-        what: "Man's desperate need for grace.",
-        where: 'Grace That Transforms',
+        topic: 'The Law condemns and restrains',
+        detail:
+          'The Law condemned us and kept us from total corruption. Galatians.',
       },
       {
-        time: 'Focus',
-        what: 'The Law condemned us and kept us from total corruption.',
-        where: 'Galatians',
+        topic: "The Law's inability to transform",
+        detail:
+          'The Law could not transform the human heart. Galatians 3:21 and Ezekiel 36.',
       },
-      {
-        time: 'Truth',
-        what: 'The Law could not transform us.',
-        where: 'Galatians 3:21 and Ezekiel 36',
-      },
-    ],
+    ]),
   },
   {
     date: 'Nov 27',
     title: "Friday — Grace is God's free gift",
     note: 'Grace is a free gift of God, embodied in Jesus, and given to save, train, and turn hearts toward his glory.',
-    rows: [
+    rows: teachingDayRows([
       {
-        time: 'Theme',
-        what: 'Grace is a free gift of God, not of works.',
-        where: 'Romans 3:24 and Romans 5:15',
+        topic: 'Grace is a free gift of God',
+        detail:
+          'Grace is given freely, not earned by works. Romans 3:24 and Romans 5:15.',
       },
       {
-        time: 'Focus',
-        what: 'Jesus is full of grace and truth; grace appeared and was embodied in him.',
-        where: 'John 1 and 1 John 1',
+        topic: 'Jesus, full of grace and truth',
+        detail:
+          'Grace appeared and was embodied in Jesus. 1 John 1 and John 1.',
       },
       {
-        time: 'Gifts',
-        what: "Grace brings salvation to all, trains us in righteous living, and gives a heart that longs for God's glory and Christ's appearing.",
-        where: 'Titus 2:11-14',
+        topic: 'The gifts of grace',
+        detail:
+          "Grace brings salvation to all, trains us in righteous living, and gives us hearts that long for God's glory and Christ's second coming. Titus 2:11-14.",
       },
-    ],
+    ]),
   },
   {
     date: 'Nov 28',
     title: 'Saturday — The transforming power of grace',
     note: 'Christ redeems and purifies, creating a new people who belong to him and are zealous for good works.',
-    rows: [
+    rows: teachingDayRows([
+      { topic: 'The transforming power of grace' },
       {
-        time: 'Theme',
-        what: 'The transforming power of grace.',
-        where: 'Grace That Transforms',
+        topic: 'Christ redeems and purifies',
+        detail: 'Christ buys back and cleanses his people.',
       },
       {
-        time: 'Focus',
-        what: 'Christ redeems and purifies: he bought and cleansed his people.',
-        where: 'Titus 2:14',
+        topic: 'Creation of a new people',
+        detail:
+          'A people who belong to Christ, his own possession, zealous for good works.',
       },
-      {
-        time: 'Truth',
-        what: 'Grace creates a new people for Christ, his own possession, zealous for good works.',
-        where: 'Titus 2:14',
-      },
-    ],
+    ]),
   },
   {
     date: 'Nov 29',
     title: 'Sunday — Declare these things',
     note: 'Paul ends by urging Titus to declare these things, exhort, and rebuke with all authority.',
     rows: [
+      { time: '9:00 AM', what: 'Breakfast' },
       {
-        time: 'Theme',
-        what: 'Declare these things.',
-        where: 'Titus 2:15',
+        time: '10:00 AM',
+        what: 'Worship service — Declare, exhort, and rebuke',
+        detail:
+          'Declare these truths, strongly encourage and urge others, and rebuke with all authority. Let no one disregard you. Titus 2:15.',
       },
-      {
-        time: 'Exhort',
-        what: 'Strongly encourage with the authority of the Word.',
-        where: 'Titus 2:15',
-      },
-      {
-        time: 'Rebuke',
-        what: 'Rebuke with all authority, letting no one disregard the message.',
-        where: 'Titus 2:15',
-      },
+      { time: '12:00 PM', what: 'Cleanup' },
+      { time: '1:00 PM', what: 'Lunch' },
+      { time: '3:00 PM', what: 'Departure' },
     ],
   },
 ]

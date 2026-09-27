@@ -27,8 +27,9 @@ The current product surface is YouthForGod Camp, implemented from the provided v
 
 There is no app-level data layer or remote API.
 
-- `src/features/camp-site/content.ts` is the typed source for the confirmed theme, main verse, camp date range, camp address, registration URL, provided template pillars, teaching schedule days, and FAQs.
+- `src/features/camp-site/content.ts` is the typed source for the confirmed theme, main verse, camp date range, camp address, registration URL, teaching schedule days, and FAQs.
 - `src/features/camp-site/CampSite.tsx` renders the template and owns only UI state.
+- `src/features/camp-site/AboutSection.tsx` renders the semantic "What we are about?" section with four named articles covering sound preaching, Christian fellowship, prayer, and music. It imports four local stock photos with intrinsic dimensions and lazy loading; source credits are in `docs/ASSET_INVENTORY.md`.
 - `src/app/App.tsx` is a thin composition layer that renders the camp-site feature.
 - `src/assets/camp-selah-photo.jpg` is imported by the feature component so Vite fingerprints and optimizes it for production builds.
 - `src/assets/updatedLogo2.png` is imported by the feature component for YouthForGod Camp logo placements in the header and footer.
@@ -40,7 +41,7 @@ React Router is not installed. Home, Schedule, and FAQ are in-page views because
 
 ## Schedule Content
 
-The active Schedule view uses the confirmed November 25-29 date range and the user-provided Wednesday-Sunday teaching outline. Exact year, arrival/departure times, prices, phone/contact number, transportation, and carpool details remain unconfirmed, so the app does not present those sample template values as facts.
+The active Schedule view uses the confirmed November 25-29 date range and the user-provided daily timetable translated into English (see `docs/SCHEDULE.md`). A typed helper builds the shared Thursday-Saturday routine from exactly three lessons. Evening services have no church attributions. Each row has a time, event, and optional detail for teaching summaries, references, prayer-hour speakers, or next-day clarification. Wednesday arrivals begin at 3:00 PM; the intro teaching remains in the day summary without an invented time. Sunday departure is at 3:00 PM. The exact year, prayer-hour speakers, prices, phone/contact number, transportation, and carpool details remain unconfirmed.
 
 ## Styling
 

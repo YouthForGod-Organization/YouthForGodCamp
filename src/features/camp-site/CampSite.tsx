@@ -4,12 +4,12 @@ import { useState } from 'react'
 import campSelahPhoto from '@/assets/camp-selah-photo.jpg'
 import youthForGodLogo from '@/assets/updatedLogo2.png'
 
+import { AboutSection } from './AboutSection'
 import {
   CAMP_ADDRESS,
   CAMP_DATE_RANGE,
   CAMP_THEME,
   FAQS,
-  PILLARS,
   REGISTRATION_URL,
   SCHEDULE_DAYS,
   type CampPage,
@@ -149,6 +149,9 @@ function HomeView() {
       <section className="hero" aria-labelledby="home-heading">
         <div className="hero__copy">
           <h1 id="home-heading">{CAMP_THEME.title}</h1>
+          <p className="hero__translation" lang="ru">
+            {CAMP_THEME.titleRu}
+          </p>
           <p>
             Grace appeared in Christ, saves freely, trains us in holiness, and
             makes a people eager for good works.
@@ -164,28 +167,7 @@ function HomeView() {
         </figure>
       </section>
 
-      <section className="intro-section" aria-labelledby="about-heading">
-        <div className="intro-section__inner">
-          <p className="script-heading" id="about-heading">
-            What we’re about
-          </p>
-          <p>
-            {CAMP_DATE_RANGE} at YouthForGod Camp. Students gather around the
-            Word, worship, and the message of grace that saves freely, trains us
-            in holiness, and makes a people eager for good works.
-          </p>
-        </div>
-      </section>
-
-      <section className="pillar-grid" aria-label="YouthForGod Camp pillars">
-        {PILLARS.map((pillar) => (
-          <article className="pillar" key={pillar.title}>
-            <p className="pillar__number">{pillar.num}</p>
-            <h2>{pillar.title}</h2>
-            <p>{pillar.body}</p>
-          </article>
-        ))}
-      </section>
+      <AboutSection />
 
       <section className="scripture-section" aria-labelledby="scripture-title">
         <div>
@@ -250,7 +232,9 @@ function ScheduleView({
             <li className="schedule-row" key={`${row.time}-${row.what}`}>
               <span className="schedule-row__time">{row.time}</span>
               <span className="schedule-row__event">{row.what}</span>
-              <span className="schedule-row__place">{row.where}</span>
+              {row.detail ? (
+                <span className="schedule-row__detail">{row.detail}</span>
+              ) : null}
             </li>
           ))}
         </ol>
@@ -262,8 +246,8 @@ function ScheduleView({
             <p className="script-heading">Dates</p>
             <h2>{CAMP_DATE_RANGE}</h2>
             <p>
-              The confirmed camp dates are November 25-29. The year and exact
-              arrival and departure times have not been confirmed yet.
+              Arrive Wednesday, November 25, from 3:00 PM. Departure is Sunday,
+              November 29, at 3:00 PM.
             </p>
           </article>
           <article>

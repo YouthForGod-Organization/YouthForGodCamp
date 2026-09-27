@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
@@ -15,6 +15,10 @@ describe('YouthForGod Camp site', () => {
         name: /grace that transforms/i,
       }),
     ).toBeInTheDocument()
+    expect(screen.getByText('Преображающая благодать')).toHaveAttribute(
+      'lang',
+      'ru',
+    )
     expect(
       screen.getAllByRole('img', { name: /youthforgod camp logo/i }),
     ).not.toHaveLength(0)
@@ -23,7 +27,43 @@ describe('YouthForGod Camp site', () => {
     ).toBeInTheDocument()
     expect(screen.getByText(/november 25-29/i)).toBeInTheDocument()
     expect(screen.queryByLabelText(/camp selah/i)).not.toBeInTheDocument()
-    expect(screen.getByText(/scripture, taught straight/i)).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { level: 2, name: 'What we are about?' }),
+    ).toBeVisible()
+    const about = within(
+      screen.getByRole('region', { name: 'What we are about?' }),
+    )
+    expect(about.getAllByRole('heading', { level: 3 })).toHaveLength(4)
+    for (const focus of [
+      /sound preaching/i,
+      /christian fellowship/i,
+      /prayer/i,
+      /music/i,
+    ]) {
+      expect(
+        about.getByRole('heading', { level: 3, name: focus }),
+      ).toBeVisible()
+    }
+    expect(about.getByText(/sit under sound preaching/i)).toBeVisible()
+    expect(
+      about.getByText(/participate in christian fellowship/i),
+    ).toBeVisible()
+    const aboutImages = about.getAllByRole('img')
+    expect(aboutImages).toHaveLength(4)
+    for (const image of aboutImages) {
+      expect(image).toHaveAttribute('alt', expect.stringMatching(/\S/))
+      expect(image).toHaveAttribute('src', expect.stringMatching(/\S/))
+      expect(image).toHaveAttribute('loading', 'lazy')
+      expect(Number(image.getAttribute('width'))).toBeGreaterThan(0)
+      expect(Number(image.getAttribute('height'))).toBeGreaterThan(0)
+    }
+    for (const oldTitle of [
+      /scripture, taught straight/i,
+      /afternoons outside/i,
+      /counselors who stay/i,
+    ]) {
+      expect(screen.queryByText(oldTitle)).not.toBeInTheDocument()
+    }
     expect(screen.getByText(/titus 2:11-14 esv/i)).toBeInTheDocument()
     const verse = screen.getByText(/the grace of god has appeared/i)
 
@@ -99,6 +139,162 @@ describe('YouthForGod Camp site', () => {
     expect(screen.getByText(/friday — grace is god's free gift/i)).toBeVisible()
     expect(screen.getByText(/romans 3:24 and romans 5:15/i)).toBeVisible()
   })
+
+  it('shows confirmed arrival and departure day events without inventing an intro time', async () => {
+    const user = userEvent.setup()
+
+    render(<App />)
+
+    await user.click(screen.getByRole('button', { name: /schedule/i }))
+
+    const wednesday = screen.getByRole('list', { name: /wednesday.*events/i })
+    const arrivals = within(wednesday)
+      .getByText(/arrival/i)
+      .closest('li')
+    const introduction = within(
+      screen.getByRole('region', { name: /wednesday.*intro/i }),
+    ).getByText(/^introduction:/i)
+
+    expect(arrivals).toHaveTextContent(/from 3(?::00)?\s*pm/i)
+    const wednesdayEvents = within(wednesday).getAllByRole('listitem')
+    expect(wednesdayEvents).toHaveLength(6)
+    for (const [index, time, event] of [
+      [1, /6:30 PM/, /Evening service/],
+      [2, /8:00 PM/, /Dinner/],
+      [3, /9:00 PM/, /Fellowship/],
+      [4, /11:00 PM/, /Tea and sauna/],
+      [5, /12:59 AM/, /Lights out/],
+    ] as const) {
+      expect(wednesdayEvents[index]).toHaveTextContent(time)
+      expect(wednesdayEvents[index]).toHaveTextContent(event)
+    }
+    expect(wednesdayEvents[5]).toHaveTextContent(
+      'The following morning (next day).',
+    )
+    expect(introduction).not.toHaveTextContent(/\d(?::\d{2})?\s*[ap]m/i)
+    for (const topic of [
+      /need.*grace/i,
+      /cheap/i,
+      /permission|license/i,
+      /jesus/i,
+      /holiness/i,
+      /transform/i,
+    ]) {
+      expect(introduction).toHaveTextContent(topic)
+    }
+    expect(
+      screen.queryByText(/arrival.*departure.*not.*confirmed/i),
+    ).not.toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: /nov 29/i }))
+
+    expect(screen.getByRole('button', { name: /nov 29/i })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+    expect(screen.getByRole('button', { name: /nov 25/i })).toHaveAttribute(
+      'aria-pressed',
+      'false',
+    )
+    const sunday = screen.getByRole('list', { name: /sunday.*events/i })
+    const sundayEvents = within(sunday).getAllByRole('listitem')
+
+    expect(sundayEvents).toHaveLength(5)
+    for (const [index, time, event] of [
+      [0, /9(?::00)?\s*am/i, /breakfast/i],
+      [1, /10(?::00)?\s*am/i, /service/i],
+      [2, /12(?::00)?\s*pm/i, /clean/i],
+      [3, /1(?::00)?\s*pm/i, /lunch/i],
+      [4, /3(?::00)?\s*pm/i, /depart/i],
+    ] as const) {
+      expect(sundayEvents[index]).toHaveTextContent(time)
+      expect(sundayEvents[index]).toHaveTextContent(event)
+    }
+    expect(sundayEvents[1]).toHaveTextContent(/titus 2:15/i)
+    expect(sundayEvents[1]).toHaveTextContent(/declare/i)
+    expect(sundayEvents[1]).toHaveTextContent(/exhort/i)
+    expect(sundayEvents[1]).toHaveTextContent(/rebuke/i)
+  })
+
+  it.each([
+    {
+      date: /nov 26/i,
+      day: /thursday.*events/i,
+      lessons: [
+        [/desperate need/i, /grace/i],
+        [/law/i, /condemn/i, /corruption/i, /galatians/i],
+        [/law/i, /transform/i, /galatians 3:21/i, /ezekiel 36/i],
+      ],
+    },
+    {
+      date: /nov 27/i,
+      day: /friday.*events/i,
+      lessons: [
+        [/free gift/i, /not.*works/i, /romans 3:24/i, /romans 5:15/i],
+        [/jesus/i, /grace.*truth/i, /1 john 1/i, /john 1/i],
+        [
+          /salvation/i,
+          /righteous/i,
+          /glory/i,
+          /coming|appearing/i,
+          /titus 2:11-14/i,
+        ],
+      ],
+    },
+    {
+      date: /nov 28/i,
+      day: /saturday.*events/i,
+      lessons: [
+        [/transforming power/i, /grace/i],
+        [/christ/i, /redeem/i, /purif/i, /bought|buys? back/i, /cleans/i],
+        [/new people/i, /possession/i, /zealous/i, /good works/i],
+      ],
+    },
+  ])(
+    'shows the complete timed program for $date',
+    async ({ date, day, lessons }) => {
+      const user = userEvent.setup()
+
+      render(<App />)
+
+      await user.click(screen.getByRole('button', { name: /schedule/i }))
+      await user.click(screen.getByRole('button', { name: date }))
+
+      const schedule = screen.getByRole('list', { name: day })
+      const events = within(schedule).getAllByRole('listitem')
+
+      expect(events).toHaveLength(12)
+      for (const [index, time, event] of [
+        [0, /^8(?::00)?\s*am/i, /wake/i],
+        [1, /^8:30\s*am/i, /prayer/i],
+        [2, /^9(?::00)?\s*am/i, /breakfast/i],
+        [3, /^10(?::00)?\s*am/i, /lesson/i],
+        [4, /^11:30\s*am/i, /lesson/i],
+        [5, /^2(?::00)?\s*pm/i, /lunch/i],
+        [6, /^5(?::00)?\s*pm/i, /lesson/i],
+        [7, /^6:30\s*pm/i, /service/i],
+        [8, /^8(?::00)?\s*pm/i, /dinner/i],
+        [9, /^9(?::00)?\s*pm/i, /fellowship/i],
+        [10, /^11(?::00)?\s*pm/i, /tea.*sauna/i],
+        [11, /^12:59\s*am/i, /lights out/i],
+      ] as const) {
+        expect(events[index]).toHaveTextContent(time)
+        expect(events[index]).toHaveTextContent(event)
+      }
+      expect(events[1]).toHaveTextContent(/speaker to be announced/i)
+      expect(schedule).not.toHaveTextContent(/led by|auburn|astoria|dry creek/i)
+      expect(events[11]).toHaveTextContent(/next day/i)
+
+      for (const [lessonIndex, eventIndex] of [3, 4, 6].entries()) {
+        expect(events[eventIndex]).toHaveTextContent(
+          new RegExp(`lesson ${lessonIndex + 1}`, 'i'),
+        )
+        for (const topic of lessons[lessonIndex] ?? []) {
+          expect(events[eventIndex]).toHaveTextContent(topic)
+        }
+      }
+    },
+  )
 
   it('opens FAQ answers and exposes accordion state', async () => {
     const user = userEvent.setup()

@@ -29,16 +29,20 @@ pnpm validate
 ## Current Coverage
 
 - `src/app/App.test.tsx`
+  - Verifies "What we are about?" has four h3 subsections covering sound preaching, Christian fellowship, prayer, and music, each with a named lazy-loaded image and intrinsic dimensions; old pillar titles stay absent.
   - Verifies the home view uses the provided template copy, YouthForGod Camp logo, Grace That Transforms theme, and Titus 2:11-14 ESV main verse.
   - Verifies the Schedule view is reachable, displays November 25-29, defaults to November 25, switches to November 27, and excludes stale template date/logistics copy.
+  - Checks all five days of the English timetable, nine lessons and their times/references, absence of evening-service church attributions, unannounced prayer speakers, and next-day lights out.
   - Verifies the FAQ view is reachable, the accordion exposes `aria-expanded`, answers appear on toggle, and unconfirmed sample phone/price values are absent.
   - Verifies the confirmed Strawberry Valley address renders in the site chrome and FAQ location answer.
   - Verifies Register Now controls link to the confirmed registration destination, open a new tab, and include `rel="noopener noreferrer"`.
   - Runs `vitest-axe` for component-level accessibility.
 - `tests/e2e/foundation.spec.ts`
   - Opens the production preview build.
+  - Checks all four About photos load successfully and the section has no horizontal overflow on desktop, iPhone, and iPad.
   - Exercises Home, Schedule, FAQ, day selection, FAQ expansion, confirmed date/address rendering, stale sample-content absence, and Register Now link behavior.
   - Runs `@axe-core/playwright`.
+  - Checks accessibility and horizontal overflow on the expanded Friday schedule and verifies Sunday departure.
   - Fails on browser console errors and page errors.
   - Fails if the document has horizontal overflow.
 - `playwright.config.ts`

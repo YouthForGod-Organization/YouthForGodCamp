@@ -20,7 +20,18 @@
 - `src/assets/favicon2.png`: 173 x 208 PNG Youth For God mark. Source for `public/favicon.png`.
 - `src/assets/favicon.png`: 185 x 218 image with JPEG data despite the `.png` extension. Not used until the extension/content mismatch is corrected.
 
-## Rules
+## About Section Photography
+
+The user authorized sourced photography for the four About subsections. These are illustrative stock photos, not photos of YouthForGod Camp or its attendees. Downloaded September 24, 2026 from free Unsplash photo pages under the [Unsplash License](https://unsplash.com/license). Each local JPEG is 960 × 640, cropped and compressed by Unsplash's image delivery service; Vite fingerprints the imports and the page lazy-loads them. No image-generation tool was used.
+
+| Local asset                       | Use and alt text                                                            | Photographer and source                                                                                    |
+| --------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `src/assets/about-preaching.jpg`  | Sound preaching: “An open Bible resting on a rustic wooden table.”          | [Sixteen Miles Out](https://unsplash.com/photos/an-open-book-sitting-on-top-of-a-wooden-table-2wsZALRFtuc) |
+| `src/assets/about-fellowship.jpg` | Christian fellowship: “A group gathered around a campfire among the trees.” | [Mike Erskine](https://unsplash.com/photos/people-having-a-bonfire-S_VbdMTsdiA)                            |
+| `src/assets/about-prayer.jpg`     | Prayer: “Hands clasped in prayer over an open Bible.”                       | [Patrick Fore](https://unsplash.com/photos/man-holding-his-hands-on-open-book-b_SHPU5M3nk)                 |
+| `src/assets/about-music.jpg`      | Music: “A musician playing a wooden acoustic guitar.”                       | [42 North](https://unsplash.com/photos/person-playing-guitar--G50vpGzaes)                                  |
+
+## Asset Rules
 
 - Add every provided image, video, font, document, and copy source here before using it in production.
 - Record intended use, licensing or source notes, optimization needs, alt text requirements, and whether the asset is approved for launch.
