@@ -1,5 +1,36 @@
 # Plan
 
+## Current Update: Transforming Grace Title
+
+Status: Complete
+
+- Planning approved renaming the shared theme to "Transforming Grace" and reusing it in the Schedule subtitle.
+- Scope: theme content, Schedule subtitle, existing tests, and current requirements/design/schedule/testing/changelog documentation. Historical records remain unchanged.
+- Acceptance: home heading and Schedule subtitle use the new title; Russian translation and YouthForGod Camp branding remain unchanged.
+- Risks: stale duplicated copy and responsive heading wrapping. Verify existing component and desktop/phone/tablet browser checks.
+- Verification: updated home assertion confirmed RED before implementation; independent review approved without findings. Full `pnpm validate` passed (9 component tests and 3 desktop/phone/tablet browser checks).
+
+## Current Update: User-Supplied About Photos
+
+Status: Complete
+
+- Planning approved replacing the four stock images with supplied photos: image 2 preaching, image 3 fellowship, image 1 prayer, and image 4 music.
+- Scope: four optimized 1200 × 800 WebP assets, About image imports/alt text/dimensions, and related documentation. Preserve original files and existing CSS grayscale.
+- Acceptance: correct photo mapping, undistorted subjects, successful local loading, and unchanged responsive layout.
+- Verification: existing image-loading/alt/dimension tests, visual screenshot review, independent review, and full `pnpm validate`. No new test or dependency is needed for this asset replacement.
+- Completed: full `pnpm validate` passed (9 component tests, 3 browser checks), desktop/mobile screenshots visually confirmed correct images and grayscale, and independent review approved without findings.
+
+## Current Update: Sermon Titles and Confirmed FAQs
+
+Status: Complete
+
+- Scope: simplify typed teaching entries to titles, make day notes optional, replace FAQs with the four supplied answers, and remove the obsolete FAQ open-house promotion.
+- Acceptance: all schedule times/events remain; no scripture references or sermon summaries appear in Schedule; home scripture stays; FAQ contains exactly the supplied audience, expectations, packing, and address answers.
+- Files: content, Schedule/FAQ rendering, existing component/browser tests, and requirements/architecture/schedule/testing/changelog documentation.
+- Risks: obsolete assertions still requiring reference text; accidentally deleting logistical details or the home verse. Update only superseded assertions while preserving times, navigation, and accordion tests.
+- Verification: Planning Agent review, Testing Agent RED confirmation, independent review, and full `pnpm validate` gate.
+- Completed: Testing Agent confirmed RED and reviewed production/docs with no findings. Full `pnpm validate` passed: formatting, lint, types, 9 component tests, coverage, production build, and 3 desktop/iPhone/iPad browser checks.
+
 ## Current Update: Readable Bilingual Hero Theme
 
 Status: Complete

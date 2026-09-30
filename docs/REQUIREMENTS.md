@@ -4,10 +4,11 @@
 
 - Build a clean, fast, responsive, accessible, maintainable camp website.
 - The camp name is YouthForGod Camp.
-- The camp theme is "Grace That Transforms".
+- The camp theme is "Transforming Grace".
 - Render the hero theme in a readable sans-serif font, with the Russian translation "Преображающая благодать" directly below the English heading and marked `lang="ru"`.
 - The home page has a "What we are about?" section with four distinct subsections: Sound preaching, Christian fellowship, Prayer, and Music. Each has short supporting copy and a relevant sourced photograph. Preserve the November 25-29 introduction; use two columns on wider screens and one on phones.
 - Display the four About photos in black and white using a CSS filter.
+- Use the four user-supplied photos for About: speaker for Sound preaching, table gathering for Christian fellowship, prayer group for Prayer, and pianist/violinist for Music. Serve optimized WebP copies and preserve the original photographs.
 - The main camp verse is Titus 2:11-14 ESV and must be shown on the main home page.
 - The confirmed camp date range is November 25-29. The year has not been confirmed.
 - The confirmed camp address is `12725 La Porte Rd, Strawberry Valley, CA 95981`.
@@ -39,9 +40,9 @@
 
 ## Confirmed Teaching Content
 
-- Theme: Grace That Transforms.
+- Theme: Transforming Grace.
 - Main verse: "For the grace of God has appeared, bringing salvation for all people, training us to renounce ungodliness and worldly passions, and to live self-controlled, upright, and godly lives in the present age, waiting for our blessed hope, the appearing of the glory of our great God and Savior Jesus Christ, who gave himself for us to redeem us from all lawlessness and to purify for himself a people for his own possession who are zealous for good works." Titus 2:11-14 ESV.
-- The visible Schedule view uses November 25-29 and the supplied daily timetable translated into English, with a preaching topic and concise summary for every lesson. See `docs/SCHEDULE.md` for the translated program.
+- The visible Schedule view uses November 25-29 and the supplied daily timetable translated into English. Teaching entries show sermon titles only, without scripture references or sermon summaries. Keep event times, arrival/departure details, prayer-speaker placeholders, and next-day lights-out notes. The main home-page scripture remains unchanged. See `docs/SCHEDULE.md` for the program.
 - Arrivals begin Wednesday at 3:00 PM; departure is Sunday at 3:00 PM. Wednesday's introductory teaching has no confirmed time.
 - Wednesday evening: 6:30 PM evening service, 8:00 PM dinner, 9:00 PM fellowship, 11:00 PM tea and sauna, and 12:59 AM lights out the following morning. No Wednesday service leader has been provided.
 - Thursday-Saturday share the supplied 12-event timetable. Lesson 1 is at 10:00 AM, lesson 2 at 11:30 AM, and lesson 3 at 5:00 PM. Retain 12:59 AM lights out, interpreted as the following morning from the event order.
@@ -52,6 +53,15 @@
 - Friday: Grace is a free gift of God, not works; Jesus full of grace and truth; the gifts of grace in Titus 2:11-14: bringing salvation to all, training us in righteous living, and creating a heart longing for God's glory and Christ's second coming. References include Romans 3:24, Romans 5:15, 1 John 1, and John 1.
 - Saturday: The transforming power of grace; Christ redeems and purifies; creation of a new people, his possession, zealous for good works.
 - Sunday: Declare these things, exhort, and rebuke with all authority from Titus 2:15.
+
+## Confirmed FAQs
+
+Show only these four questions and answers in the FAQ accordion, without the old template FAQs or open-house promotion:
+
+- Who is camp for? Camp is for youth church members.
+- What to expect? Expect a full program including preaching, worship, fellowship, and great food.
+- What to bring? Bible, notebook, bedding, and warm clothes.
+- Where is camp? 12725 La Porte Rd, Strawberry Valley, CA 95981
 
 ## Open Questions For Provided Camp Files
 

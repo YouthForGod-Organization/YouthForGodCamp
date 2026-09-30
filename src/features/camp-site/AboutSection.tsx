@@ -1,7 +1,7 @@
-import fellowshipPhoto from '@/assets/about-fellowship.jpg'
-import musicPhoto from '@/assets/about-music.jpg'
-import prayerPhoto from '@/assets/about-prayer.jpg'
-import preachingPhoto from '@/assets/about-preaching.jpg'
+import fellowshipPhoto from '@/assets/camp-fellowship.webp'
+import musicPhoto from '@/assets/camp-music.webp'
+import prayerPhoto from '@/assets/camp-prayer.webp'
+import preachingPhoto from '@/assets/camp-preaching.webp'
 
 import { CAMP_DATE_RANGE } from './content'
 
@@ -12,7 +12,7 @@ const aboutItems = [
     description:
       'Sit under sound preaching rooted in Scripture, centered on the grace that transforms.',
     image: preachingPhoto,
-    alt: 'An open Bible resting on a rustic wooden table.',
+    alt: 'A speaker with a headset microphone gesturing behind a lectern.',
   },
   {
     id: 'fellowship',
@@ -20,7 +20,7 @@ const aboutItems = [
     description:
       'Participate in Christian fellowship. Share conversation and encourage one another in faith.',
     image: fellowshipPhoto,
-    alt: 'A group gathered around a campfire among the trees.',
+    alt: 'A group sharing conversation around a table.',
   },
   {
     id: 'prayer',
@@ -28,7 +28,7 @@ const aboutItems = [
     description:
       'Come before God together in prayer, with gratitude and dependence on His grace.',
     image: prayerPhoto,
-    alt: 'Hands clasped in prayer over an open Bible.',
+    alt: 'A group standing together in prayer among rows of chairs.',
   },
   {
     id: 'music',
@@ -36,7 +36,7 @@ const aboutItems = [
     description:
       'Join together in music, lifting our voices in worship and praise.',
     image: musicPhoto,
-    alt: 'A musician playing a wooden acoustic guitar.',
+    alt: 'A pianist and violinist playing music together.',
   },
 ] as const
 
@@ -59,8 +59,8 @@ export function AboutSection() {
             <img
               src={item.image}
               alt={item.alt}
-              width={960}
-              height={640}
+              width={1200}
+              height={800}
               loading="lazy"
               decoding="async"
             />

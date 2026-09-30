@@ -12,7 +12,7 @@ describe('YouthForGod Camp site', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: /grace that transforms/i,
+        name: /transforming grace/i,
       }),
     ).toBeInTheDocument()
     expect(screen.getByText('Преображающая благодать')).toHaveAttribute(
@@ -88,6 +88,9 @@ describe('YouthForGod Camp site', () => {
       screen.getByRole('heading', { level: 1, name: /the week/i }),
     ).toBeInTheDocument()
     expect(screen.getAllByText(/november 25-29/i)[0]).toBeVisible()
+    expect(
+      screen.getByText('November 25-29 · Transforming Grace'),
+    ).toBeVisible()
     expect(screen.queryByText(/\b20\d{2}\b/)).not.toBeInTheDocument()
     expect(
       screen.queryByText(/repeated all five weeks/i),
@@ -137,7 +140,18 @@ describe('YouthForGod Camp site', () => {
       'true',
     )
     expect(screen.getByText(/friday — grace is god's free gift/i)).toBeVisible()
-    expect(screen.getByText(/romans 3:24 and romans 5:15/i)).toBeVisible()
+    for (const date of [
+      /nov 25/i,
+      /nov 26/i,
+      /nov 27/i,
+      /nov 28/i,
+      /nov 29/i,
+    ]) {
+      await user.click(screen.getByRole('button', { name: date }))
+      expect(screen.getByRole('main')).not.toHaveTextContent(
+        /galatians|ezekiel|romans|john|titus/i,
+      )
+    }
   })
 
   it('shows confirmed arrival and departure day events without inventing an intro time', async () => {
@@ -172,16 +186,9 @@ describe('YouthForGod Camp site', () => {
       'The following morning (next day).',
     )
     expect(introduction).not.toHaveTextContent(/\d(?::\d{2})?\s*[ap]m/i)
-    for (const topic of [
-      /need.*grace/i,
-      /cheap/i,
-      /permission|license/i,
-      /jesus/i,
-      /holiness/i,
-      /transform/i,
-    ]) {
-      expect(introduction).toHaveTextContent(topic)
-    }
+    expect(introduction).toHaveTextContent(
+      /^Introduction: Why we need grace\. Teaching time to be announced\.$/,
+    )
     expect(
       screen.queryByText(/arrival.*departure.*not.*confirmed/i),
     ).not.toBeInTheDocument()
@@ -210,10 +217,9 @@ describe('YouthForGod Camp site', () => {
       expect(sundayEvents[index]).toHaveTextContent(time)
       expect(sundayEvents[index]).toHaveTextContent(event)
     }
-    expect(sundayEvents[1]).toHaveTextContent(/titus 2:15/i)
-    expect(sundayEvents[1]).toHaveTextContent(/declare/i)
-    expect(sundayEvents[1]).toHaveTextContent(/exhort/i)
-    expect(sundayEvents[1]).toHaveTextContent(/rebuke/i)
+    expect(sundayEvents[1]).toHaveTextContent(
+      /^10:00 AM\s*Worship service — Declare, exhort, and rebuke$/,
+    )
   })
 
   it.each([
@@ -221,33 +227,27 @@ describe('YouthForGod Camp site', () => {
       date: /nov 26/i,
       day: /thursday.*events/i,
       lessons: [
-        [/desperate need/i, /grace/i],
-        [/law/i, /condemn/i, /corruption/i, /galatians/i],
-        [/law/i, /transform/i, /galatians 3:21/i, /ezekiel 36/i],
+        "Man's desperate need for grace",
+        'The Law condemns and restrains',
+        "The Law's inability to transform",
       ],
     },
     {
       date: /nov 27/i,
       day: /friday.*events/i,
       lessons: [
-        [/free gift/i, /not.*works/i, /romans 3:24/i, /romans 5:15/i],
-        [/jesus/i, /grace.*truth/i, /1 john 1/i, /john 1/i],
-        [
-          /salvation/i,
-          /righteous/i,
-          /glory/i,
-          /coming|appearing/i,
-          /titus 2:11-14/i,
-        ],
+        'Grace is a free gift of God',
+        'Jesus, full of grace and truth',
+        'The gifts of grace',
       ],
     },
     {
       date: /nov 28/i,
       day: /saturday.*events/i,
       lessons: [
-        [/transforming power/i, /grace/i],
-        [/christ/i, /redeem/i, /purif/i, /bought|buys? back/i, /cleans/i],
-        [/new people/i, /possession/i, /zealous/i, /good works/i],
+        'The transforming power of grace',
+        'Christ redeems and purifies',
+        'Creation of a new people',
       ],
     },
   ])(
@@ -286,12 +286,9 @@ describe('YouthForGod Camp site', () => {
       expect(events[11]).toHaveTextContent(/next day/i)
 
       for (const [lessonIndex, eventIndex] of [3, 4, 6].entries()) {
-        expect(events[eventIndex]).toHaveTextContent(
-          new RegExp(`lesson ${lessonIndex + 1}`, 'i'),
+        expect(events[eventIndex]?.textContent).toBe(
+          `${['10:00 AM', '11:30 AM', '5:00 PM'][lessonIndex]}Lesson ${lessonIndex + 1} — ${lessons[lessonIndex]}`,
         )
-        for (const topic of lessons[lessonIndex] ?? []) {
-          expect(events[eventIndex]).toHaveTextContent(topic)
-        }
       }
     },
   )
@@ -308,38 +305,40 @@ describe('YouthForGod Camp site', () => {
     ).toBeInTheDocument()
     expect(screen.queryByText(/\(828\) 555-0142/i)).not.toBeInTheDocument()
 
-    const costQuestion = screen.getByRole('button', {
-      name: /what does the week cost/i,
-    })
-
-    expect(costQuestion).toHaveAttribute('aria-expanded', 'false')
-
-    await user.click(costQuestion)
-
-    expect(costQuestion).toHaveAttribute('aria-expanded', 'true')
-    expect(
-      screen.getByText(/pricing has not been confirmed yet/i),
-    ).toBeVisible()
-    expect(screen.queryByText(/\$525/i)).not.toBeInTheDocument()
-
-    const locationQuestion = screen.getByRole('button', {
-      name: /where is camp, and can we carpool/i,
-    })
-
-    await user.click(locationQuestion)
-
-    expect(locationQuestion).toHaveAttribute('aria-expanded', 'true')
-    const locationAnswerId = locationQuestion.getAttribute('aria-controls')
-    const locationAnswer = document.getElementById(locationAnswerId ?? '')
-
-    if (!locationAnswer) {
-      throw new Error('Expected FAQ location answer to be rendered')
-    }
-
-    expect(locationAnswer).toHaveTextContent(
-      /12725 la porte rd, strawberry valley, ca 95981/i,
+    expect(screen.getByText('For youth church members')).toBeVisible()
+    const faq = within(
+      screen.getByRole('region', { name: 'Frequently asked questions' }),
     )
-    expect(locationAnswer).not.toHaveTextContent(/black mountain/i)
+    const questions = [
+      ['Who is camp for?', 'Camp is for youth church members.'],
+      [
+        'What to expect?',
+        'Expect a full program including preaching, worship, fellowship, and great food.',
+      ],
+      ['What to bring?', 'Bible, notebook, bedding, and warm clothes.'],
+      ['Where is camp?', '12725 La Porte Rd, Strawberry Valley, CA 95981'],
+    ] as const
+    expect(faq.getAllByRole('button')).toHaveLength(4)
+    for (const [index, [question, answer]] of questions.entries()) {
+      const button = faq.getByRole('button', { name: question })
+      expect(button).toHaveAttribute(
+        'aria-expanded',
+        index === 0 ? 'true' : 'false',
+      )
+      if (index !== 0) await user.click(button)
+      expect(button).toHaveAttribute('aria-expanded', 'true')
+      const panel = document.getElementById(
+        button.getAttribute('aria-controls') ?? '',
+      )
+      expect(panel).toBeVisible()
+      expect(panel?.textContent).toBe(answer)
+      await user.click(button)
+      expect(button).toHaveAttribute('aria-expanded', 'false')
+      expect(panel).not.toBeInTheDocument()
+    }
+    expect(
+      screen.queryByText(/open house|not a brochure|parents & students/i),
+    ).not.toBeInTheDocument()
   })
 
   it('links registration controls to the confirmed destination in a new tab', () => {

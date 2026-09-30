@@ -30,10 +30,10 @@ pnpm validate
 
 - `src/app/App.test.tsx`
   - Verifies "What we are about?" has four h3 subsections covering sound preaching, Christian fellowship, prayer, and music, each with a named lazy-loaded image and intrinsic dimensions; old pillar titles stay absent.
-  - Verifies the home view uses the provided template copy, YouthForGod Camp logo, Grace That Transforms theme, and Titus 2:11-14 ESV main verse.
+  - Verifies the home view uses the provided template copy, YouthForGod Camp logo, Transforming Grace theme, and Titus 2:11-14 ESV main verse; the Schedule subtitle uses the same theme title.
   - Verifies the Schedule view is reachable, displays November 25-29, defaults to November 25, switches to November 27, and excludes stale template date/logistics copy.
-  - Checks all five days of the English timetable, nine lessons and their times/references, absence of evening-service church attributions, unannounced prayer speakers, and next-day lights out.
-  - Verifies the FAQ view is reachable, the accordion exposes `aria-expanded`, answers appear on toggle, and unconfirmed sample phone/price values are absent.
+  - Checks all five days of the English timetable, nine sermon titles and their times, absence of scripture references and evening-service church attributions, unannounced prayer speakers, and next-day lights out.
+  - Verifies the FAQ view contains exactly the four confirmed questions and answers, the accordion exposes `aria-expanded`, answers appear on toggle, and stale template FAQs and open-house copy are absent.
   - Verifies the confirmed Strawberry Valley address renders in the site chrome and FAQ location answer.
   - Verifies Register Now controls link to the confirmed registration destination, open a new tab, and include `rel="noopener noreferrer"`.
   - Runs `vitest-axe` for component-level accessibility.

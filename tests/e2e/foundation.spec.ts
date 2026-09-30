@@ -20,10 +20,10 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
   await expect(
     page.getByRole('heading', {
       level: 1,
-      name: /grace that transforms/i,
+      name: /transforming grace/i,
     }),
   ).toBeVisible()
-  const hero = page.getByRole('region', { name: 'Grace That Transforms' })
+  const hero = page.getByRole('region', { name: 'Transforming Grace' })
   await expect(hero.getByText('Преображающая благодать')).toBeVisible()
   await expect(hero.getByText('Преображающая благодать')).toHaveAttribute(
     'lang',
@@ -104,6 +104,12 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
     'true',
   )
   await expect(page.getByText(/wednesday — intro to camp/i)).toBeVisible()
+  for (const date of [/nov 25/i, /nov 26/i, /nov 27/i, /nov 28/i, /nov 29/i]) {
+    await page.getByRole('button', { name: date }).click()
+    await expect(page.getByRole('main')).not.toContainText(
+      /galatians|ezekiel|romans|john|titus/i,
+    )
+  }
   await page.getByRole('button', { name: /nov 27/i }).click()
   await expect(
     page.getByText(/friday — grace is god's free gift/i),
@@ -138,27 +144,38 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
 
   await page.getByRole('button', { name: /faq/i }).click()
   await expect(page.getByText(/\(828\) 555-0142/i)).toHaveCount(0)
-  const costQuestion = page.getByRole('button', {
-    name: /what does the week cost/i,
+  const faq = page.getByRole('region', { name: 'Frequently asked questions' })
+  await expect(faq.getByRole('button')).toHaveText([
+    'Who is camp for?',
+    'What to expect?',
+    'What to bring?',
+    'Where is camp?',
+  ])
+  const packingQuestion = faq.getByRole('button', {
+    name: 'What to bring?',
+    exact: true,
   })
-  await costQuestion.click()
-  await expect(costQuestion).toHaveAttribute('aria-expanded', 'true')
+  await expect(packingQuestion).toHaveAttribute('aria-expanded', 'false')
+  await packingQuestion.click()
+  await expect(packingQuestion).toHaveAttribute('aria-expanded', 'true')
   await expect(
-    page.getByText(/pricing has not been confirmed yet/i),
+    faq.getByText('Bible, notebook, bedding, and warm clothes.'),
   ).toBeVisible()
   await expect(page.getByText(/\$525/i)).toHaveCount(0)
   const locationQuestion = page.getByRole('button', {
-    name: /where is camp, and can we carpool/i,
+    name: 'Where is camp?',
+    exact: true,
   })
   await locationQuestion.click()
   await expect(locationQuestion).toHaveAttribute('aria-expanded', 'true')
   const locationAnswerId = await locationQuestion.getAttribute('aria-controls')
   expect(locationAnswerId).not.toBeNull()
   const locationAnswer = page.locator(`#${locationAnswerId}`)
-  await expect(locationAnswer).toContainText(
-    /12725 la porte rd, strawberry valley, ca 95981/i,
+  await expect(locationAnswer).toHaveText(
+    '12725 La Porte Rd, Strawberry Valley, CA 95981',
   )
   await expect(locationAnswer).not.toContainText(/black mountain/i)
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
 
   await page.getByRole('button', { name: /home/i }).click()
   await expect(

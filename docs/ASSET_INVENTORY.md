@@ -22,7 +22,20 @@
 
 ## About Section Photography
 
-The user authorized sourced photography for the four About subsections. These are illustrative stock photos, not photos of YouthForGod Camp or its attendees. Downloaded September 24, 2026 from free Unsplash photo pages under the [Unsplash License](https://unsplash.com/license). Each local JPEG is 960 × 640, cropped and compressed by Unsplash's image delivery service; Vite fingerprints the imports and the page lazy-loads them. No image-generation tool was used.
+The user supplied and authorized four replacement photos on September 30, 2026. Each derivative is a 1200 × 800 WebP encoded at quality 82 using the existing local Chromium canvas encoder, with proportional sizing and a centered 3:2 crop. No dependency was added. Vite fingerprints the imports; the page lazy-loads them and applies the existing CSS grayscale filter. The original color files in the Photos library are unchanged. The four derivatives total 246,718 bytes, versus 4,325,692 bytes for the originals. No image-generation tool was used.
+
+Source root: `/Users/williamvelichko/Pictures/Photos Library.photoslibrary/originals/`.
+
+| Local asset                       | Source relative to source root                          | Use and alt text                                                                   | Size         |
+| --------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------ |
+| `src/assets/camp-preaching.webp`  | `0/023421C8-F0A0-45FD-9FAD-6A90843FD751.jpeg` (image 2) | Sound preaching: “A speaker with a headset microphone gesturing behind a lectern.” | 31,366 bytes |
+| `src/assets/camp-fellowship.webp` | `5/5C848707-B2FA-4BB4-A76F-9353FC1D60C4.jpeg` (image 3) | Christian fellowship: “A group sharing conversation around a table.”               | 88,370 bytes |
+| `src/assets/camp-prayer.webp`     | `8/82BE7DA3-F51A-4D27-9238-B98558C2AF26.jpeg` (image 1) | Prayer: “A group standing together in prayer among rows of chairs.”                | 69,256 bytes |
+| `src/assets/camp-music.webp`      | `F/FB33FC1A-F247-4DC0-AF67-BC42F0B0B88C.jpeg` (image 4) | Music: “A pianist and violinist playing music together.”                           | 57,726 bytes |
+
+## Superseded About Stock Photos
+
+These earlier illustrative stock photos are retained locally with their credits but are no longer imported into the page. Downloaded September 24, 2026 from free Unsplash photo pages under the [Unsplash License](https://unsplash.com/license). Each JPEG is 960 × 640.
 
 | Local asset                       | Use and alt text                                                            | Photographer and source                                                                                    |
 | --------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |

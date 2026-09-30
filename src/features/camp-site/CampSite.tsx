@@ -200,7 +200,9 @@ function ScheduleView({
     <>
       <section className="page-heading" aria-labelledby="schedule-heading">
         <h1 id="schedule-heading">The week</h1>
-        <p>{CAMP_DATE_RANGE} · Grace That Transforms</p>
+        <p>
+          {CAMP_DATE_RANGE} · {CAMP_THEME.title}
+        </p>
       </section>
 
       <div className="day-selector" role="group" aria-label="Choose a day">
@@ -224,7 +226,7 @@ function ScheduleView({
       <section className="schedule-detail" aria-labelledby="active-day-title">
         <div className="schedule-detail__intro">
           <h2 id="active-day-title">{activeDay.title}</h2>
-          <p>{activeDay.note}</p>
+          {activeDay.note ? <p>{activeDay.note}</p> : null}
         </div>
 
         <ol className="schedule-list" aria-label={`${activeDay.title} events`}>
@@ -281,7 +283,7 @@ function FaqView({ openFaqs, onToggleFaq }: FaqViewProps) {
     <>
       <section className="page-heading" aria-labelledby="faq-heading">
         <h1 id="faq-heading">Questions</h1>
-        <p>For parents &amp; students</p>
+        <p>For youth church members</p>
       </section>
 
       <section className="faq-section" aria-label="Frequently asked questions">
@@ -313,19 +315,6 @@ function FaqView({ openFaqs, onToggleFaq }: FaqViewProps) {
             </article>
           )
         })}
-      </section>
-
-      <section className="closing-section" aria-labelledby="closing-title">
-        <div>
-          <p className="script-heading" id="closing-title">
-            Come and see
-          </p>
-          <p>
-            Open house every second Saturday in April and May. Tour the cabins,
-            meet the directors, ask the hard questions in person.
-          </p>
-          <RegisterLink className="register-link--filled" />
-        </div>
       </section>
     </>
   )

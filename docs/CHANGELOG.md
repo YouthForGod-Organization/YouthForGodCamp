@@ -22,6 +22,10 @@
 
 ### Changed
 
+- Renamed the camp theme to "Transforming Grace" on Home and Schedule, sharing one title source and preserving the Russian translation.
+- Replaced the four About stock photos with user-supplied photos, optimized to 1200 × 800 WebP (about 247 KB combined), retaining CSS grayscale and the original files.
+- Simplified schedule teaching entries to sermon titles without scripture references or summaries; replaced template FAQs with the four confirmed answers about audience, expectations, packing, and location.
+- Removed the obsolete FAQ open-house promotion.
 - Changed the hero theme to a readable sans-serif heading with "Преображающая благодать" directly below the English title.
 - Applied a black-and-white CSS filter to the four About photos.
 - Expanded "What we are about?" into four responsive subsections with locally hosted Unsplash photos, short descriptions, and accessible headings for sound preaching, Christian fellowship, prayer, and music.
@@ -48,6 +52,9 @@
 
 ### Verification
 
+- Transforming Grace title: RED confirmed before implementation, independent review approved, and full `pnpm validate` passed (9 component tests and 3 browser checks).
+- User-supplied About photos: full `pnpm validate` passed (9 component tests and 3 browser checks), independent review approved, and desktop/mobile screenshots visually verified.
+- Sermon titles and confirmed FAQs: Testing Agent confirmed RED and reviewed with no findings; full `pnpm validate` passed (9 component tests and 3 browser checks).
 - Readable bilingual hero and grayscale About photos: full `pnpm validate` passed (9 component tests and 3 browser checks), independent review approved, and screenshots visually verified.
 - Illustrated About subsections: RED confirmed, independent review approved, and full `pnpm validate` passed (9 component tests and 3 desktop/iPhone/iPad checks), including successful image loading. Desktop and mobile screenshots visually reviewed.
 - Service attribution removal: existing tests confirmed RED; independent review and full `pnpm validate` passed (9 component tests and 3 browser checks).
