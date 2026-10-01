@@ -139,7 +139,8 @@ export const SCHEDULE_DAYS: readonly ScheduleDay[] = [
 export const FAQS: readonly Faq[] = [
   {
     question: 'Who is camp for?',
-    answer: 'Camp is for youth church members.',
+    answer:
+      'Camp is for youth church members. Church members are individuals who have been baptized and are committed to a local church.',
   },
   {
     question: 'What to expect?',

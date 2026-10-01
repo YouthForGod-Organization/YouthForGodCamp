@@ -12,9 +12,16 @@
 
 - `public/favicon.png`: browser favicon copied from `src/assets/favicon2.png` for the confirmed YouthForGod Camp brand.
 
+## Hero Artwork
+
+- User-provided and approved October 1, 2026: `/Users/williamvelichko/Pictures/Photos Library.photoslibrary/originals/3/3FC67700-7AEF-4550-8EE9-60D5587E087B.png` (1920 × 1080, 4,445,691 bytes).
+- Optimized WebP derivatives: `src/assets/transforming-grace-1920.webp` (1920 × 1080, 655,962 bytes) and `src/assets/transforming-grace-960.webp` (960 × 540, 147,880 bytes). Quality 82 using the existing Chromium canvas encoder, no new dependencies. Original PNG untouched.
+- Full-color, uncropped hero artwork with responsive `srcSet`, `sizes="100vw"`, intrinsic dimensions, and high fetch priority. Alt: "Sunlit forest artwork for Transforming Grace." Embedded title/reference remain intact; readable bilingual HTML copy sits below to avoid overlapping the artwork's lettering.
+- Supersedes the old black-and-white building hero; existing About photos remain unchanged.
+
 ## Local Project Assets
 
-- `src/assets/camp-selah-photo.jpg`: local copy of the provided `assets/photo.jpg`, used as the template hero image and fingerprinted by Vite in production builds. Alt text: "Black-and-white view of a wooded camp building and stone steps."
+- `src/assets/camp-selah-photo.jpg`: retained local copy of the old template hero, superseded by the supplied Transforming Grace artwork and no longer imported.
 - `src/assets/updatedLogo2.png`: 381 x 222 PNG compact Youth For God logo, used in the header and footer as the accessible "YouthForGod Camp logo" image.
 - `src/assets/logo.png`: 820 x 459 PNG wide Youth For God logo. Available for larger future brand placements; not used in the navigation because its width risks wrapping on mobile.
 - `src/assets/favicon2.png`: 173 x 208 PNG Youth For God mark. Source for `public/favicon.png`.

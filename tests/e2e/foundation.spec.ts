@@ -20,10 +20,32 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
   await expect(
     page.getByRole('heading', {
       level: 1,
-      name: /transforming grace/i,
+      name: 'Преображающая благодать',
     }),
   ).toBeVisible()
-  const hero = page.getByRole('region', { name: 'Transforming Grace' })
+  const hero = page.getByRole('region', { name: 'Преображающая благодать' })
+  await expect(
+    hero.getByText('Transforming Grace', { exact: true }),
+  ).toHaveCount(0)
+  await expect(
+    hero.getByText('Church Members Only', { exact: true }),
+  ).toBeVisible()
+  const heroArtwork = hero.getByRole('img', {
+    name: 'Sunlit forest artwork for Transforming Grace.',
+  })
+  await expect(heroArtwork).toBeVisible()
+  await expect
+    .poll(() =>
+      heroArtwork.evaluate(
+        (element: HTMLImageElement) =>
+          element.complete && element.naturalWidth > 0,
+      ),
+    )
+    .toBe(true)
+  const artworkSize = await heroArtwork.boundingBox()
+  expect(artworkSize).not.toBeNull()
+  expect(artworkSize!.width / artworkSize!.height).toBeCloseTo(16 / 9, 2)
+  await expect(heroArtwork).toHaveCSS('object-fit', 'contain')
   await expect(hero.getByText('Преображающая благодать')).toBeVisible()
   await expect(hero.getByText('Преображающая благодать')).toHaveAttribute(
     'lang',
@@ -41,7 +63,6 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
   await expect(
     page.getByRole('img', { name: /youthforgod camp logo/i }).first(),
   ).toBeVisible()
-  await expect(page.getByRole('img', { name: /wooded camp/i })).toBeVisible()
   await expect(
     page.getByText(/12725 la porte rd, strawberry valley, ca 95981/i),
   ).toBeVisible()

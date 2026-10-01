@@ -29,6 +29,8 @@ pnpm validate
 ## Current Coverage
 
 - `src/app/App.test.tsx`
+  - Checks the Russian hero h1 and language annotation, absence of a repeated English text title, and the "Church Members Only" notice.
+  - Checks the supplied hero artwork's accessible image, intrinsic dimensions, responsive candidates, and high fetch priority.
   - Verifies "What we are about?" has four h3 subsections covering sound preaching, Christian fellowship, prayer, and music, each with a named lazy-loaded image and intrinsic dimensions; old pillar titles stay absent.
   - Verifies the home view uses the provided template copy, YouthForGod Camp logo, Transforming Grace theme, and Titus 2:11-14 ESV main verse; the Schedule subtitle uses the same theme title.
   - Verifies the Schedule view is reachable, displays November 25-29, defaults to November 25, switches to November 27, and excludes stale template date/logistics copy.
@@ -39,6 +41,7 @@ pnpm validate
   - Runs `vitest-axe` for component-level accessibility.
 - `tests/e2e/foundation.spec.ts`
   - Opens the production preview build.
+  - Checks hero artwork decoding, uncropped 16:9 proportions, and responsive hero screenshots on desktop, iPhone, and iPad.
   - Checks all four About photos load successfully and the section has no horizontal overflow on desktop, iPhone, and iPad.
   - Exercises Home, Schedule, FAQ, day selection, FAQ expansion, confirmed date/address rendering, stale sample-content absence, and Register Now link behavior.
   - Runs `@axe-core/playwright`.

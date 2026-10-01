@@ -2,9 +2,11 @@
 
 ## Current State
 
-The active design is YouthForGod Camp, adapted from the provided v9 camp template. It uses a warm cream ground, forest green primary color, gold accent, a readable sans-serif hero heading, script-style section headings, clean sans body type, centered sticky navigation, the provided Youth For God logo, and a diagonal hero image on wider screens.
+The active design is YouthForGod Camp, adapted from the provided v9 camp template. It uses a warm cream ground, forest green primary color, gold accent, a readable sans-serif hero heading, script-style section headings, clean sans body type, centered sticky navigation, the provided Youth For God logo, and full-width Transforming Grace hero artwork.
 
-The hero uses the existing sans font at weight 600, with explicit sizes from 2.5rem on phones to 4.5rem on large screens. The Russian theme translation sits directly below the English h1 in smaller, regular-weight type with `lang="ru"`. Allow natural wrapping without horizontal overflow.
+The hero artwork stays full-color and uncropped at 16:9. Its embedded lettering must not be covered by HTML text. Place the Russian heading, English description, "Church Members Only" notice, and filled registration link in a centered dark forest panel below it, with cream text and a visible cream keyboard-focus outline. Do not repeat the English artwork title in the copy panel.
+
+The Russian theme is the hero's h1 with `lang="ru"`, using regular-weight sans-serif type at 1.15rem on phones and 1.35rem otherwise. The membership notice uses weight 600. Allow natural wrapping without horizontal overflow.
 
 The home page presents the confirmed theme "Transforming Grace" and a long Titus 2:11-14 ESV blockquote. Long scripture text should stay constrained to a readable line length and must not be uppercased.
 
@@ -40,6 +42,6 @@ CSS variables are defined in `src/styles/globals.css` for:
 - Use stable layout constraints for repeated items and controls.
 - Ensure text fits inside its container at mobile and desktop widths.
 - Avoid hidden interactions that require pointer-only input.
-- Disable the diagonal hero image clip on narrow mobile and iPad portrait widths.
+- Preserve the hero artwork's 16:9 ratio at every width; do not apply diagonal clipping or minimum image heights that crop its lettering.
 - Sticky navigation may wrap, but controls must remain readable and tappable.
 - Do not use viewport-based font scaling; adjust type sizes at explicit breakpoints so phone and iPad text remains predictable.

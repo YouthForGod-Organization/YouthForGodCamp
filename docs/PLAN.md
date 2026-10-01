@@ -1,5 +1,33 @@
 # Plan
 
+## Current Update: FAQ Membership Explanation
+
+Status: Complete
+
+- Planning approved appending the supplied definition of church members to the first FAQ answer; no other eligibility copy or accordion behavior changes.
+- Files: typed content, existing exact-answer component assertion, requirements, architecture, plan, and changelog.
+- Acceptance: first answer retains the youth audience statement and explains baptism and commitment to a local church. Other answers remain unchanged.
+- Verification: exact-answer assertion confirmed RED before implementation. Independent review approved without findings; full `pnpm validate` passed (9 component tests and 3 browser checks). No new dependency or standalone test required.
+
+## Current Update: Hero Membership Notice
+
+Status: Complete
+
+- Planning approved removing the repeated English heading, promoting the Russian translation to the hero h1, and adding "Church Members Only" before registration.
+- Preserve artwork, English description, CTA, and English theme in the Schedule. Scope: hero markup/styles, existing assertions, and affected documentation.
+- Acceptance: single Russian h1 with `lang="ru"`, no repeated English DOM title in the hero, exact membership notice, readable responsive layout, and unchanged navigation.
+- Verification: updated component assertion confirmed RED before implementation. Independent testing review approved without findings. Full `pnpm validate` passed (9 component tests and 3 responsive browser checks); mobile hero screenshot visually reviewed.
+
+## Current Update: Supplied Hero Artwork
+
+Status: Complete
+
+- Planning approved full-width, uncropped 16:9 artwork above a compact dark forest copy panel; preserve readable English/Russian titles and registration.
+- Files: CampSite, hero CSS, two WebP assets, existing component/browser assertions, requirements, architecture, design, asset, testing, and changelog docs.
+- Acceptance: complete full-color artwork, successful responsive image loading, intrinsic dimensions and high priority, no overlapping lettering, no overflow, and unchanged navigation/About/schedule.
+- Risks: cropping embedded lettering, image weight, contrast, and duplicate title presentation. Use uncropped responsive 1920/960 WebP, keep HTML copy separate, and review screenshots.
+- Verification: Main confirmed RED before implementation; independent testing review approved without findings and passed all 9 component tests. Full `pnpm validate` passed, including 3 desktop/phone/tablet browser checks. All three hero screenshots visually reviewed for complete artwork and readable copy.
+
 ## Current Update: Transforming Grace Title
 
 Status: Complete

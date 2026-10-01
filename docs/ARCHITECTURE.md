@@ -31,7 +31,7 @@ There is no app-level data layer or remote API.
 - `src/features/camp-site/CampSite.tsx` renders the template and owns only UI state.
 - `src/features/camp-site/AboutSection.tsx` renders the semantic "What we are about?" section with four named articles covering sound preaching, Christian fellowship, prayer, and music. It imports four user-supplied photos as local 1200 × 800 WebP derivatives with intrinsic dimensions, lazy loading, and CSS grayscale; source records are in `docs/ASSET_INVENTORY.md`.
 - `src/app/App.tsx` is a thin composition layer that renders the camp-site feature.
-- `src/assets/camp-selah-photo.jpg` is imported by the feature component so Vite fingerprints and optimizes it for production builds.
+- `src/assets/transforming-grace-1920.webp` and `transforming-grace-960.webp` are pre-optimized hero artwork imported for Vite fingerprinting. A responsive `img` with `srcSet`, `sizes="100vw"`, intrinsic 1920 × 1080 dimensions, and high fetch priority displays the complete artwork without cropping. HTML copy follows in the same hero section.
 - `src/assets/updatedLogo2.png` is imported by the feature component for YouthForGod Camp logo placements in the header and footer.
 - `public/favicon.png` is copied from `src/assets/favicon2.png` for browser favicon use.
 
@@ -45,7 +45,7 @@ The active Schedule view uses the confirmed November 25-29 date range and the us
 
 ## FAQ Content
 
-The FAQ accordion contains only four confirmed entries: audience (youth church members), what to expect, what to bring, and the camp address. The legacy template FAQs and open-house promotion have been removed.
+The FAQ accordion contains only four confirmed entries: audience (youth church members), what to expect, what to bring, and the camp address. The audience answer explains that church members are individuals who have been baptized and are committed to a local church. The legacy template FAQs and open-house promotion have been removed.
 
 ## Styling
 
@@ -53,7 +53,7 @@ Tailwind CSS is wired through the Vite plugin. CSS variables in `src/styles/glob
 
 The v9 template palette is preserved with one documented accessibility adjustment: the filled gold button background is slightly lightened from the original `#b08d2c` to `#bd9833` so dark text passes WCAG AA contrast in browser axe checks.
 
-The layout is mobile-first. The diagonal hero image is disabled at tablet portrait and narrower widths to prevent awkward crops and horizontal overflow.
+The layout is mobile-first. The hero artwork retains its full 16:9 composition at every width, without a diagonal clip, grayscale, or cropping. A dark forest panel beneath keeps the Russian h1, English description, "Church Members Only" notice, and registration link clear of embedded lettering. The artwork supplies the visible English title; it is not duplicated in the HTML copy panel.
 
 ## Package Manager
 

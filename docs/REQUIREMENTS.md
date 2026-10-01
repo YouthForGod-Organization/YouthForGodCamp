@@ -5,7 +5,7 @@
 - Build a clean, fast, responsive, accessible, maintainable camp website.
 - The camp name is YouthForGod Camp.
 - The camp theme is "Transforming Grace".
-- Render the hero theme in a readable sans-serif font, with the Russian translation "Преображающая благодать" directly below the English heading and marked `lang="ru"`.
+- Below the artwork, show only the Russian theme heading "Преображающая благодать" in readable sans-serif type, marked `lang="ru"`. Remove the repeated English title from this copy panel; retain its description and registration link and add "Church Members Only".
 - The home page has a "What we are about?" section with four distinct subsections: Sound preaching, Christian fellowship, Prayer, and Music. Each has short supporting copy and a relevant sourced photograph. Preserve the November 25-29 introduction; use two columns on wider screens and one on phones.
 - Display the four About photos in black and white using a CSS filter.
 - Use the four user-supplied photos for About: speaker for Sound preaching, table gathering for Christian fellowship, prayer group for Prayer, and pianist/violinist for Music. Serve optimized WebP copies and preserve the original photographs.
@@ -31,8 +31,8 @@
 
 - Implement the latest provided template from `Christian Youth Camp Templates/Camp Selah Site v9.dc.html` as the current structural design source.
 - Use the provided template copy and data as project content except where explicitly superseded by confirmed requirements.
-- Keep the design aligned with the v9 template: cream background, forest and gold accents, readable sans-serif hero heading with Russian translation, script-style section headings, centered sticky navigation, YouthForGod Camp logo in the site chrome, diagonal hero image on larger screens, Home/Schedule/FAQ views, schedule day selector, FAQ accordion, and footer.
-- Use the provided `assets/photo.jpg` as the hero image.
+- Keep the design aligned with the v9 template: cream background, forest and gold accents, readable sans-serif hero heading with Russian translation, script-style section headings, centered sticky navigation, YouthForGod Camp logo in the site chrome, Home/Schedule/FAQ views, schedule day selector, FAQ accordion, and footer.
+- Use the supplied Transforming Grace forest artwork as the full-width hero visual, replacing the template photograph. Keep its complete 16:9 composition and color, serve responsive optimized WebP copies, and preserve the original PNG. Place the Russian heading, English description, membership notice, and registration below the artwork on a dark forest panel to avoid overlapping its embedded title.
 - Use the provided Youth For God logo assets from `src/assets` for the confirmed YouthForGod Camp brand.
 - Treat the uploaded Forest Home screenshots as external design references only; do not copy their brands, logos, or content into the YouthForGod Camp site.
 - Make the design mobile and iPad friendly with no horizontal overflow and no incoherent text or navigation wrapping.
@@ -58,7 +58,7 @@
 
 Show only these four questions and answers in the FAQ accordion, without the old template FAQs or open-house promotion:
 
-- Who is camp for? Camp is for youth church members.
+- Who is camp for? Camp is for youth church members. Church members are individuals who have been baptized and are committed to a local church.
 - What to expect? Expect a full program including preaching, worship, fellowship, and great food.
 - What to bring? Bible, notebook, bedding, and warm clothes.
 - Where is camp? 12725 La Porte Rd, Strawberry Valley, CA 95981

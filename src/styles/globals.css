@@ -207,15 +207,14 @@ a:focus-visible {
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  align-items: stretch;
-  min-height: 78svh;
+  background: var(--camp-forest-2);
 }
 
 .hero__copy {
-  align-self: center;
-  padding: 4rem 1.5rem;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
 }
 
 .hero h1,
@@ -230,7 +229,7 @@ a:focus-visible {
 }
 
 .hero h1 {
-  max-width: 10em;
+  color: var(--camp-cream);
   font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: -0.035em;
@@ -239,34 +238,39 @@ a:focus-visible {
 }
 
 .hero__copy p {
-  max-width: 30rem;
-  margin: 0 0 2.5rem;
-  color: var(--camp-ink);
+  max-width: 42rem;
+  margin: 0 auto 1.5rem;
+  color: var(--camp-cream);
   font-size: 1.08rem;
   font-weight: 300;
   line-height: 1.7;
 }
 
 .hero__copy .hero__translation {
-  margin: 0.85rem 0 1.75rem;
-  color: var(--camp-forest);
+  margin: 0.75rem auto 1.25rem;
+  color: var(--camp-cream);
   font-size: 1.35rem;
   font-weight: 400;
   line-height: 1.5;
 }
 
+.hero__copy .hero__eligibility {
+  font-weight: 600;
+}
+
 .hero__media {
-  min-height: 21rem;
-  margin: 0;
-  overflow: hidden;
-  clip-path: polygon(9% 0, 100% 0, 100% 100%, 0 100%);
+  aspect-ratio: 16 / 9;
 }
 
 .hero__media img {
+  display: block;
   width: 100%;
-  height: 100%;
-  min-height: 21rem;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+}
+
+.hero .register-link:focus-visible {
+  outline-color: var(--camp-cream);
 }
 
 .register-link {
@@ -626,7 +630,7 @@ a:focus-visible {
 
 @media (min-width: 700px) {
   .hero__copy {
-    padding: 5rem 3rem;
+    padding: 3rem;
   }
 
   .hero h1 {
@@ -649,7 +653,7 @@ a:focus-visible {
   }
 
   .hero__copy {
-    padding: 5.5rem 4.5rem;
+    padding: 3rem 4.5rem;
   }
 
   .hero h1 {
@@ -665,22 +669,6 @@ a:focus-visible {
   .closing-section > div,
   .logistics-grid {
     padding-block: 6rem;
-  }
-}
-
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: minmax(0, 1fr);
-    min-height: 0;
-  }
-
-  .hero__media {
-    min-height: 17.5rem;
-    clip-path: none;
-  }
-
-  .hero__media img {
-    min-height: 17.5rem;
   }
 }
 
@@ -702,7 +690,7 @@ a:focus-visible {
   }
 
   .hero__copy {
-    padding: 3rem 1.25rem;
+    padding: 2rem 1.25rem;
   }
 
   .page-heading h1 {

@@ -12,12 +12,24 @@ describe('YouthForGod Camp site', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: /transforming grace/i,
+        name: 'Преображающая благодать',
       }),
     ).toBeInTheDocument()
+    expect(screen.queryByText('Transforming Grace')).not.toBeInTheDocument()
+    expect(screen.getByText('Church Members Only')).toBeVisible()
     expect(screen.getByText('Преображающая благодать')).toHaveAttribute(
       'lang',
       'ru',
+    )
+    const heroArtwork = screen.getByRole('img', {
+      name: 'Sunlit forest artwork for Transforming Grace.',
+    })
+    expect(heroArtwork).toHaveAttribute('width', '1920')
+    expect(heroArtwork).toHaveAttribute('height', '1080')
+    expect(heroArtwork).toHaveAttribute('fetchpriority', 'high')
+    expect(heroArtwork).toHaveAttribute(
+      'srcset',
+      expect.stringMatching(/960w.*1920w/),
     )
     expect(
       screen.getAllByRole('img', { name: /youthforgod camp logo/i }),
@@ -310,7 +322,10 @@ describe('YouthForGod Camp site', () => {
       screen.getByRole('region', { name: 'Frequently asked questions' }),
     )
     const questions = [
-      ['Who is camp for?', 'Camp is for youth church members.'],
+      [
+        'Who is camp for?',
+        'Camp is for youth church members. Church members are individuals who have been baptized and are committed to a local church.',
+      ],
       [
         'What to expect?',
         'Expect a full program including preaching, worship, fellowship, and great food.',

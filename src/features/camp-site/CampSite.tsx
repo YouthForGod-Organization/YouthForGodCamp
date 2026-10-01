@@ -1,7 +1,8 @@
 import { Minus, Plus } from 'lucide-react'
 import { useState } from 'react'
 
-import campSelahPhoto from '@/assets/camp-selah-photo.jpg'
+import heroArtwork from '@/assets/transforming-grace-1920.webp'
+import heroArtworkSmall from '@/assets/transforming-grace-960.webp'
 import youthForGodLogo from '@/assets/updatedLogo2.png'
 
 import { AboutSection } from './AboutSection'
@@ -147,24 +148,29 @@ function HomeView() {
   return (
     <>
       <section className="hero" aria-labelledby="home-heading">
+        <div className="hero__media">
+          <img
+            src={heroArtwork}
+            srcSet={`${heroArtworkSmall} 960w, ${heroArtwork} 1920w`}
+            sizes="100vw"
+            width={1920}
+            height={1080}
+            alt="Sunlit forest artwork for Transforming Grace."
+            fetchPriority="high"
+            decoding="async"
+          />
+        </div>
         <div className="hero__copy">
-          <h1 id="home-heading">{CAMP_THEME.title}</h1>
-          <p className="hero__translation" lang="ru">
+          <h1 id="home-heading" className="hero__translation" lang="ru">
             {CAMP_THEME.titleRu}
-          </p>
+          </h1>
           <p>
             Grace appeared in Christ, saves freely, trains us in holiness, and
             makes a people eager for good works.
           </p>
-          <RegisterLink />
+          <p className="hero__eligibility">Church Members Only</p>
+          <RegisterLink className="register-link--filled" />
         </div>
-        <figure className="hero__media">
-          <img
-            src={campSelahPhoto}
-            alt="Black-and-white view of a wooded camp building and stone steps."
-            decoding="async"
-          />
-        </figure>
       </section>
 
       <AboutSection />

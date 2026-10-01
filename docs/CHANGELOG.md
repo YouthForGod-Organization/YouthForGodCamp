@@ -22,6 +22,9 @@
 
 ### Changed
 
+- Expanded "Who is camp for?" to explain that church members are individuals who have been baptized and are committed to a local church.
+- Removed the repeated English title beneath the hero artwork, kept the Russian translation as the h1, and added "Church Members Only" above registration.
+- Replaced the old building hero with the supplied full-color Transforming Grace artwork, optimized into responsive 1920/960 WebP files. Kept its complete composition and placed bilingual copy and registration below on a dark forest panel; original PNG retained.
 - Renamed the camp theme to "Transforming Grace" on Home and Schedule, sharing one title source and preserving the Russian translation.
 - Replaced the four About stock photos with user-supplied photos, optimized to 1200 × 800 WebP (about 247 KB combined), retaining CSS grayscale and the original files.
 - Simplified schedule teaching entries to sermon titles without scripture references or summaries; replaced template FAQs with the four confirmed answers about audience, expectations, packing, and location.
@@ -52,6 +55,9 @@
 
 ### Verification
 
+- FAQ membership explanation: RED confirmed, independent review approved, and full `pnpm validate` passed (9 component tests and 3 browser checks).
+- Hero membership notice: RED confirmed, independent review approved, and full `pnpm validate` passed (9 component tests and 3 browser checks).
+- Supplied hero artwork: RED confirmed before implementation, independent review approved, and full `pnpm validate` passed (9 component tests and 3 browser checks). Desktop, phone, and tablet screenshots visually verified.
 - Transforming Grace title: RED confirmed before implementation, independent review approved, and full `pnpm validate` passed (9 component tests and 3 browser checks).
 - User-supplied About photos: full `pnpm validate` passed (9 component tests and 3 browser checks), independent review approved, and desktop/mobile screenshots visually verified.
 - Sermon titles and confirmed FAQs: Testing Agent confirmed RED and reviewed with no findings; full `pnpm validate` passed (9 component tests and 3 browser checks).
