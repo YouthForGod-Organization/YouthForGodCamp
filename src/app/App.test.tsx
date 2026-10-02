@@ -1,11 +1,38 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { axe } from 'vitest-axe'
 
 import App from './App'
 
 describe('YouthForGod Camp site', () => {
+  it('scrolls to the top for every page navigation but not in-page controls', async () => {
+    const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const user = userEvent.setup()
+    try {
+      render(<App />)
+      for (const name of ['Schedule', 'FAQ', 'Home', 'Home']) {
+        scrollTo.mockClear()
+        await user.click(screen.getByRole('button', { name }))
+        expect(scrollTo).toHaveBeenCalledExactlyOnceWith({
+          top: 0,
+          left: 0,
+          behavior: 'instant',
+        })
+      }
+      await user.click(screen.getByRole('button', { name: 'Schedule' }))
+      scrollTo.mockClear()
+      await user.click(screen.getByRole('button', { name: /nov 27/i }))
+      expect(scrollTo).not.toHaveBeenCalled()
+      await user.click(screen.getByRole('button', { name: 'FAQ' }))
+      scrollTo.mockClear()
+      await user.click(screen.getByRole('button', { name: 'Who is camp for?' }))
+      expect(scrollTo).not.toHaveBeenCalled()
+    } finally {
+      scrollTo.mockRestore()
+    }
+  })
+
   it('renders the home view with YouthForGod Camp branding and camp theme', () => {
     render(<App />)
 
@@ -161,7 +188,7 @@ describe('YouthForGod Camp site', () => {
     ]) {
       await user.click(screen.getByRole('button', { name: date }))
       expect(screen.getByRole('main')).not.toHaveTextContent(
-        /galatians|ezekiel|romans|john|titus/i,
+        /galatians|ezekiel|romans|john\s+\d|titus/i,
       )
     }
   })
@@ -230,14 +257,17 @@ describe('YouthForGod Camp site', () => {
       expect(sundayEvents[index]).toHaveTextContent(event)
     }
     expect(sundayEvents[1]).toHaveTextContent(
-      /^10:00 AM\s*Worship service — Declare, exhort, and rebuke$/,
+      'Worship service — Declare, exhort, and rebuke',
     )
+    expect(sundayEvents[1]).toHaveTextContent('Speaker: Балацкий Роман.')
+    expect(sunday).not.toHaveTextContent(/call to repentance|Бальжик Вениамин/i)
   })
 
   it.each([
     {
       date: /nov 26/i,
       day: /thursday.*events/i,
+      speakers: ['Аненков Виталик', 'Clark Daniel', 'Бальжик Петр'],
       lessons: [
         "Man's desperate need for grace",
         'The Law condemns and restrains',
@@ -247,6 +277,7 @@ describe('YouthForGod Camp site', () => {
     {
       date: /nov 27/i,
       day: /friday.*events/i,
+      speakers: ['Бальжик В', 'Балацкий Роман', 'William Velichko'],
       lessons: [
         'Grace is a free gift of God',
         'Jesus, full of grace and truth',
@@ -256,6 +287,7 @@ describe('YouthForGod Camp site', () => {
     {
       date: /nov 28/i,
       day: /saturday.*events/i,
+      speakers: ['pusankov John', 'Анненков Виталик', 'Балацкий Роман'],
       lessons: [
         'The transforming power of grace',
         'Christ redeems and purifies',
@@ -264,7 +296,7 @@ describe('YouthForGod Camp site', () => {
     },
   ])(
     'shows the complete timed program for $date',
-    async ({ date, day, lessons }) => {
+    async ({ date, day, lessons, speakers }) => {
       const user = userEvent.setup()
 
       render(<App />)
@@ -293,13 +325,17 @@ describe('YouthForGod Camp site', () => {
         expect(events[index]).toHaveTextContent(time)
         expect(events[index]).toHaveTextContent(event)
       }
-      expect(events[1]).toHaveTextContent(/speaker to be announced/i)
+      expect(events[1]?.textContent).toBe('8:30 AMPrayer hour')
+      expect(schedule).not.toHaveTextContent(
+        /prayer assignment|phoenix|fresno|washington|Matthew\/Velichko|Puzankov Jhon/i,
+      )
+      expect(schedule).not.toHaveTextContent(/speaker to be announced/i)
       expect(schedule).not.toHaveTextContent(/led by|auburn|astoria|dry creek/i)
       expect(events[11]).toHaveTextContent(/next day/i)
 
       for (const [lessonIndex, eventIndex] of [3, 4, 6].entries()) {
         expect(events[eventIndex]?.textContent).toBe(
-          `${['10:00 AM', '11:30 AM', '5:00 PM'][lessonIndex]}Lesson ${lessonIndex + 1} — ${lessons[lessonIndex]}`,
+          `${['10:00 AM', '11:30 AM', '5:00 PM'][lessonIndex]}Lesson ${lessonIndex + 1} — ${lessons[lessonIndex]}Speaker: ${speakers[lessonIndex]}`,
         )
       }
     },

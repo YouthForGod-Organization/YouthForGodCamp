@@ -31,7 +31,7 @@ There is no app-level data layer or remote API.
 - `src/features/camp-site/CampSite.tsx` renders the template and owns only UI state.
 - `src/features/camp-site/AboutSection.tsx` renders the semantic "What we are about?" section with four named articles covering sound preaching, Christian fellowship, prayer, and music. It imports four user-supplied photos as local 1200 × 800 WebP derivatives with intrinsic dimensions, lazy loading, and CSS grayscale; source records are in `docs/ASSET_INVENTORY.md`.
 - `src/app/App.tsx` is a thin composition layer that renders the camp-site feature.
-- `src/assets/transforming-grace-1920.webp` and `transforming-grace-960.webp` are pre-optimized hero artwork imported for Vite fingerprinting. A responsive `img` with `srcSet`, `sizes="100vw"`, intrinsic 1920 × 1080 dimensions, and high fetch priority displays the complete artwork without cropping. HTML copy follows in the same hero section.
+- `src/assets/transforming-grace-updated-1920.webp` and `transforming-grace-updated-960.webp` are pre-optimized hero artwork imported for Vite fingerprinting. A responsive `img` with `srcSet`, `sizes="100vw"`, intrinsic 1920 × 1080 dimensions, and high fetch priority displays the complete artwork without cropping. HTML copy follows in the same hero section. Previous hero derivatives remain locally but are not imported.
 - `src/assets/updatedLogo2.png` is imported by the feature component for YouthForGod Camp logo placements in the header and footer.
 - `public/favicon.png` is copied from `src/assets/favicon2.png` for browser favicon use.
 
@@ -39,9 +39,11 @@ There is no app-level data layer or remote API.
 
 React Router is not installed. Home, Schedule, and FAQ are in-page views because the provided v9 template models them as local page state, not separate URLs. Add React Router only after multiple confirmed routes or shareable URLs are required.
 
+All three navigation buttons use a shared `navigateTo` handler that sets the active page and calls `window.scrollTo({ top: 0, left: 0, behavior: 'instant' })`. This also resets scroll on current-page activation and overrides global smooth scrolling. It does not run on initial mount, schedule day changes, FAQ toggles, or external registration links; day and accordion state remain intact.
+
 ## Schedule Content
 
-The active Schedule view uses the confirmed November 25-29 date range and the user-provided daily timetable translated into English (see `docs/SCHEDULE.md`). A typed helper builds the shared Thursday-Saturday routine from exactly three sermon-title strings. Teaching entries omit scripture references and summaries. Evening services have no church attributions. Each row has a time, event, and optional detail for prayer-hour speakers or next-day clarification. An optional day note preserves Wednesday's introductory sermon title and unconfirmed teaching time. Wednesday arrivals begin at 3:00 PM; Sunday departure is at 3:00 PM. The exact year, prayer-hour speakers, prices, phone/contact number, transportation, and carpool details remain unconfirmed.
+The active Schedule view uses the confirmed November 25-29 date range and the user-provided daily timetable translated into English (see `docs/SCHEDULE.md`). A typed helper builds the shared Thursday-Saturday routine from exactly three lesson objects (title and speaker). Teaching entries omit scripture references and summaries. Evening services have no church attributions; morning prayer events have no assignment details. Existing row details display lesson speakers, Sunday's main speaker, and next-day clarification. User corrections supersede PDF names where specified. An optional day note preserves Wednesday's introductory sermon title and unconfirmed teaching time. Wednesday arrivals begin at 3:00 PM; Sunday departure is at 3:00 PM. The PDF's different Wednesday times, Saturday order, and year are not applied to the UI. Prices, contact number, transportation, and carpool details remain unconfirmed.
 
 ## FAQ Content
 

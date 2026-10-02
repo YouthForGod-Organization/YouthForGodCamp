@@ -95,7 +95,12 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
     style: '.camp-header { visibility: hidden; }',
   })
 
+  await page.evaluate(() => window.scrollTo({ top: 300, behavior: 'instant' }))
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY))
+    .toBeGreaterThan(0)
   await page.getByRole('button', { name: /schedule/i }).click()
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
   await expect(
     page.getByRole('heading', { level: 1, name: /the week/i }),
   ).toBeVisible()
@@ -128,7 +133,7 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
   for (const date of [/nov 25/i, /nov 26/i, /nov 27/i, /nov 28/i, /nov 29/i]) {
     await page.getByRole('button', { name: date }).click()
     await expect(page.getByRole('main')).not.toContainText(
-      /galatians|ezekiel|romans|john|titus/i,
+      /galatians|ezekiel|romans|john\s+\d|titus/i,
     )
   }
   await page.getByRole('button', { name: /nov 27/i }).click()
@@ -140,6 +145,16 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
   await expect(
     friday.getByRole('listitem').filter({ hasText: /lesson 1/i }),
   ).toContainText(/10(?::00)?\s*am/i)
+  await expect(friday).not.toContainText(/prayer assignment|Fresno/i)
+  await expect(
+    friday.getByRole('listitem').filter({ hasText: /lesson 1/i }),
+  ).toContainText('Speaker: Бальжик В')
+  await expect(
+    friday.getByRole('listitem').filter({ hasText: /lesson 2/i }),
+  ).toContainText('Speaker: Балацкий Роман')
+  await expect(
+    friday.getByRole('listitem').filter({ hasText: /lesson 3/i }),
+  ).toContainText('Speaker: William Velichko')
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
   expect(
     await page.evaluate(
@@ -163,7 +178,12 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
     ),
   ).toBe(false)
 
+  await page.evaluate(() => window.scrollTo({ top: 300, behavior: 'instant' }))
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY))
+    .toBeGreaterThan(0)
   await page.getByRole('button', { name: /faq/i }).click()
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
   await expect(page.getByText(/\(828\) 555-0142/i)).toHaveCount(0)
   const faq = page.getByRole('region', { name: 'Frequently asked questions' })
   await expect(faq.getByRole('button')).toHaveText([
@@ -198,7 +218,22 @@ test('YouthForGod Camp critical paths are accessible and responsive', async ({
   await expect(locationAnswer).not.toContainText(/black mountain/i)
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
 
+  // FAQ fits on tall tablets; use the full Friday schedule to start scrolled.
+  await page.getByRole('button', { name: 'Schedule', exact: true }).click()
+  await page.getByRole('button', { name: /nov 27/i }).click()
+  await page.evaluate(() => window.scrollTo({ top: 300, behavior: 'instant' }))
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY))
+    .toBeGreaterThan(0)
   await page.getByRole('button', { name: /home/i }).click()
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
+  await page.evaluate(() => window.scrollTo({ top: 300, behavior: 'instant' }))
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY))
+    .toBeGreaterThan(0)
+  await page.getByRole('button', { name: 'Home', exact: true }).focus()
+  await page.keyboard.press('Enter')
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
   await expect(
     page.getByRole('link', { name: /register now/i }).first(),
   ).toHaveAttribute('href', 'https://app.camp-paradise.org/')

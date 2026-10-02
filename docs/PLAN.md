@@ -1,5 +1,45 @@
 # Plan
 
+## Current Update: Refreshed Hero Artwork
+
+Status: Complete
+
+- Planning approved replacing only the two hero imports with new 1920/960 WebP derivatives (quality 82) of the latest supplied PNG. Keep original and previous assets intact.
+- Files: two new assets, CampSite imports, and requirements/architecture/asset/plan/changelog docs. No layout, copy, loading, or dependency changes.
+- Acceptance: new clean artwork and bottom Titus reference fully visible without cropping on desktop/phone/tablet; correct image loading and unchanged page behavior.
+- Risks: old imports or cropped bottom text. Verify existing tests and hero screenshots; no new test needed for this asset-only swap.
+- Verification: independent review approved without findings; full `pnpm validate` passed (10 component tests and 3 desktop/phone/tablet browser checks). Desktop and phone screenshots confirm the new artwork and complete bottom reference.
+
+## Current Update: Speaker Corrections
+
+Status: Complete
+
+- Planning approved removing morning prayer assignments while preserving events, changing Friday lesson 3 to William Velichko and Saturday lesson 1 to exact "pusankov John", and removing Sunday's repentance attribution only.
+- Scope: typed content/helper, existing component/browser tests, and current requirements/architecture/schedule/testing/changelog docs. Historical PDF records remain unchanged.
+- Acceptance: all three prayer hours remain at 8:30 AM without details; corrected speaker names display; Sunday retains Балацкий Роман; other names, titles, order, and times stay intact.
+- Risk: blanket scripture checks for "John" conflict with the corrected name. Match John plus chapter number instead.
+- Verification: updated assertions confirmed RED (four failures); independent review approved without findings. Full `pnpm validate` passed (10 component tests and 3 desktop/phone/tablet browser checks).
+
+## Current Update: PDF Speaker Assignments
+
+Status: Complete
+
+- Planning approved adding nine lesson speakers, three prayer assignments, and Sunday's two speaking roles from the supplied PDF. Keep original spellings and initials.
+- Scope: typed lesson helper/content, existing component/browser assertions, requirements/architecture/schedule/asset/testing docs, and changelog. Existing row detail rendering needs no change.
+- Acceptance: every name matches its topic, Wednesday remains without an invented speaker, and times/order/sermon titles/no-evening-attribution rules remain unchanged.
+- Risks: Saturday's source ordering differs; match by topic. PDF Wednesday times/year are outside this names-only update. Do not expand abbreviated names or treat prayer locations as individuals.
+- Verification: updated assertions confirmed RED for missing prayer and Sunday assignments. Independent review verified all topic/name mappings without findings. Full `pnpm validate` passed (10 component tests and 3 desktop/phone/tablet browser checks).
+
+## Current Update: Navigation Scroll Reset
+
+Status: Complete
+
+- Planning approved a shared navigation handler that selects the view and instantly scrolls to the top, including reselecting the current page.
+- Scope: CampSite navigation, component/browser regression tests, JSDOM scroll stub, and requirements/architecture/testing/changelog docs. No dependencies.
+- Acceptance: Home/Schedule/FAQ navigation resets both scroll axes; same-page and keyboard activation work. Day/accordion controls do not reset scroll, and existing local state and external registration remain intact.
+- Risks: global smooth-scroll CSS, React scroll anchoring, JSDOM's missing implementation, and false-positive browser checks that start at zero. Use instant behavior and verify real scrolled starting positions across desktop/phone/tablet.
+- Verification: component test confirmed RED (no scroll call); independent review approved without findings. Fixed test query types and used the full Friday schedule for tablet scroll setup because FAQ fits within its viewport. Full `pnpm validate` passed: 10 component tests, coverage, build, and 3 desktop/phone/tablet browser checks.
+
 ## Current Update: FAQ Membership Explanation
 
 Status: Complete

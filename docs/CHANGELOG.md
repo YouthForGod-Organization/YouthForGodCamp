@@ -22,6 +22,10 @@
 
 ### Changed
 
+- Replaced the hero with the latest supplied clean forest artwork, using responsive WebP derivatives (473 KB and 134 KB) while preserving the original PNG, previous assets, and existing layout.
+- Removed morning prayer assignments and Sunday's call-to-repentance attribution; corrected lesson speakers to William Velichko and pusankov John as supplied by the user.
+- Added PDF-supplied lesson speakers, prayer assignments, and Sunday speaking roles to the schedule, preserving source names and existing times/topic order.
+- Home, Schedule, and FAQ navigation now instantly scrolls to the top, including current-page activation, while preserving schedule/FAQ state.
 - Expanded "Who is camp for?" to explain that church members are individuals who have been baptized and are committed to a local church.
 - Removed the repeated English title beneath the hero artwork, kept the Russian translation as the h1, and added "Church Members Only" above registration.
 - Replaced the old building hero with the supplied full-color Transforming Grace artwork, optimized into responsive 1920/960 WebP files. Kept its complete composition and placed bilingual copy and registration below on a dark forest panel; original PNG retained.
@@ -55,6 +59,10 @@
 
 ### Verification
 
+- Refreshed hero artwork: independent review approved, full `pnpm validate` passed (10 component tests and 3 browser checks), and desktop/phone screenshots visually verified.
+- Speaker corrections: RED confirmed, independent review approved, and full `pnpm validate` passed (10 component tests and 3 browser checks).
+- PDF speaker assignments: RED confirmed, independent mapping review approved, and full `pnpm validate` passed (10 component tests and 3 browser checks).
+- Navigation scroll reset: RED confirmed, independent review approved, and full `pnpm validate` passed (10 component tests and 3 desktop/phone/tablet browser checks), including current-page keyboard activation.
 - FAQ membership explanation: RED confirmed, independent review approved, and full `pnpm validate` passed (9 component tests and 3 browser checks).
 - Hero membership notice: RED confirmed, independent review approved, and full `pnpm validate` passed (9 component tests and 3 browser checks).
 - Supplied hero artwork: RED confirmed before implementation, independent review approved, and full `pnpm validate` passed (9 component tests and 3 browser checks). Desktop, phone, and tablet screenshots visually verified.

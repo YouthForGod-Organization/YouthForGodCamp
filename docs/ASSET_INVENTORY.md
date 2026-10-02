@@ -2,6 +2,7 @@
 
 ## Provided Project Assets
 
+- `/Users/williamvelichko/Downloads/Лагерь (1).pdf`: user-supplied speaker assignment source (October 1, 2026), text extracted locally with PDFKit. Page 1 prayer assignments; page 2 nine lesson speakers and two Sunday roles. Used only to add names, preserving source spellings and existing schedule times/order. See `docs/SCHEDULE.md` for mapping and source discrepancies. Original unchanged; not bundled into the website.
 - `/Users/williamvelichko/Downloads/Christian Youth Camp Templates/Camp Selah Site v9.dc.html`: primary Camp Selah template source for layout, copy, schedule, FAQ, colors, and interactions.
 - `/Users/williamvelichko/Downloads/Christian Youth Camp Templates/assets/photo.jpg`: provided black-and-white hero photograph for the template design.
 - `/Users/williamvelichko/Downloads/Christian Youth Camp Templates/uploads/Screenshot 2026-09-04 at 5.39.07 PM.png`: external Youth for God reference screenshot; not a production content source.
@@ -14,9 +15,14 @@
 
 ## Hero Artwork
 
+- Current artwork, approved October 1, 2026: `/Users/williamvelichko/Pictures/Photos Library.photoslibrary/originals/E/EEE5C65D-EF8F-4261-9EAD-13A84527952A.png` (1920 × 1080, 3,852,869 bytes). Clean forest/title design with the Titus reference at the bottom.
+- Active derivatives: `src/assets/transforming-grace-updated-1920.webp` (1920 × 1080, 473,228 bytes) and `src/assets/transforming-grace-updated-960.webp` (960 × 540, 134,268 bytes), quality 82 using the existing Chromium canvas encoder. Original PNG and previous derivatives remain untouched. Existing responsive loading, full composition, alt text, and layout are preserved.
+
+### Superseded Hero Artwork
+
 - User-provided and approved October 1, 2026: `/Users/williamvelichko/Pictures/Photos Library.photoslibrary/originals/3/3FC67700-7AEF-4550-8EE9-60D5587E087B.png` (1920 × 1080, 4,445,691 bytes).
 - Optimized WebP derivatives: `src/assets/transforming-grace-1920.webp` (1920 × 1080, 655,962 bytes) and `src/assets/transforming-grace-960.webp` (960 × 540, 147,880 bytes). Quality 82 using the existing Chromium canvas encoder, no new dependencies. Original PNG untouched.
-- Full-color, uncropped hero artwork with responsive `srcSet`, `sizes="100vw"`, intrinsic dimensions, and high fetch priority. Alt: "Sunlit forest artwork for Transforming Grace." Embedded title/reference remain intact; readable bilingual HTML copy sits below to avoid overlapping the artwork's lettering.
+- Both versions use full-color, uncropped artwork with responsive `srcSet`, `sizes="100vw"`, intrinsic dimensions, and high fetch priority. Alt: "Sunlit forest artwork for Transforming Grace." Embedded title/reference remain intact; Russian heading and supporting copy sit below to avoid overlapping the artwork's lettering. Only the updated derivatives are imported now.
 - Supersedes the old black-and-white building hero; existing About photos remain unchanged.
 
 ## Local Project Assets

@@ -10,7 +10,7 @@
 - Display the four About photos in black and white using a CSS filter.
 - Use the four user-supplied photos for About: speaker for Sound preaching, table gathering for Christian fellowship, prayer group for Prayer, and pianist/violinist for Music. Serve optimized WebP copies and preserve the original photographs.
 - The main camp verse is Titus 2:11-14 ESV and must be shown on the main home page.
-- The confirmed camp date range is November 25-29. The year has not been confirmed.
+- The confirmed camp date range is November 25-29. The new speaker PDF states 2026, but the names-only update leaves the displayed dates unchanged.
 - The confirmed camp address is `12725 La Porte Rd, Strawberry Valley, CA 95981`.
 - The confirmed registration destination is `https://app.camp-paradise.org/`.
 - Use React, TypeScript strict mode, Vite, pnpm, Tailwind CSS, shadcn/ui-style primitives, and Lucide React.
@@ -33,20 +33,23 @@
 - Use the provided template copy and data as project content except where explicitly superseded by confirmed requirements.
 - Keep the design aligned with the v9 template: cream background, forest and gold accents, readable sans-serif hero heading with Russian translation, script-style section headings, centered sticky navigation, YouthForGod Camp logo in the site chrome, Home/Schedule/FAQ views, schedule day selector, FAQ accordion, and footer.
 - Use the supplied Transforming Grace forest artwork as the full-width hero visual, replacing the template photograph. Keep its complete 16:9 composition and color, serve responsive optimized WebP copies, and preserve the original PNG. Place the Russian heading, English description, membership notice, and registration below the artwork on a dark forest panel to avoid overlapping its embedded title.
+- The current hero uses the latest supplied clean forest artwork (`EEE5C65D-EF8F-4261-9EAD-13A84527952A.png`) with the Titus reference at the bottom, replacing the earlier textured version. Keep the same responsive WebP format and layout.
 - Use the provided Youth For God logo assets from `src/assets` for the confirmed YouthForGod Camp brand.
 - Treat the uploaded Forest Home screenshots as external design references only; do not copy their brands, logos, or content into the YouthForGod Camp site.
 - Make the design mobile and iPad friendly with no horizontal overflow and no incoherent text or navigation wrapping.
 - Registration controls must link to the confirmed registration destination and open in a new browser tab.
+- Activating Home, Schedule, or FAQ must immediately scroll the window to the top, including reselecting the current page. Schedule day changes and FAQ toggles do not trigger this reset; preserve their state when navigating.
 
 ## Confirmed Teaching Content
 
 - Theme: Transforming Grace.
 - Main verse: "For the grace of God has appeared, bringing salvation for all people, training us to renounce ungodliness and worldly passions, and to live self-controlled, upright, and godly lives in the present age, waiting for our blessed hope, the appearing of the glory of our great God and Savior Jesus Christ, who gave himself for us to redeem us from all lawlessness and to purify for himself a people for his own possession who are zealous for good works." Titus 2:11-14 ESV.
-- The visible Schedule view uses November 25-29 and the supplied daily timetable translated into English. Teaching entries show sermon titles only, without scripture references or sermon summaries. Keep event times, arrival/departure details, prayer-speaker placeholders, and next-day lights-out notes. The main home-page scripture remains unchanged. See `docs/SCHEDULE.md` for the program.
+- The visible Schedule view uses November 25-29 and the supplied daily timetable translated into English. Teaching entries show sermon titles and supplied speaker names, without scripture references or sermon summaries. Keep existing event times, arrival/departure details, and next-day lights-out notes. The main home-page scripture remains unchanged. See `docs/SCHEDULE.md` for the program and speaker mapping.
 - Arrivals begin Wednesday at 3:00 PM; departure is Sunday at 3:00 PM. Wednesday's introductory teaching has no confirmed time.
 - Wednesday evening: 6:30 PM evening service, 8:00 PM dinner, 9:00 PM fellowship, 11:00 PM tea and sauna, and 12:59 AM lights out the following morning. No Wednesday service leader has been provided.
 - Thursday-Saturday share the supplied 12-event timetable. Lesson 1 is at 10:00 AM, lesson 2 at 11:30 AM, and lesson 3 at 5:00 PM. Retain 12:59 AM lights out, interpreted as the following morning from the event order.
-- Schedule evening services show their time and event name without "Led by" lines or church attributions. Prayer-hour speakers have not been supplied and should be marked as to be announced.
+- Schedule evening services show their time and event name without "Led by" lines or church attributions. Morning prayer hours retain their times and event names without assignments or speaker placeholders.
+- Use lesson speakers from `/Users/williamvelichko/Downloads/Лагерь (1).pdf`, except the user-corrected Friday lesson 3 speaker "William Velichko" and Saturday lesson 1 speaker "pusankov John". Preserve other initials and spellings. Sunday shows only "Speaker: Балацкий Роман." without the call-to-repentance attribution. Map Saturday speakers by topic and retain the existing lesson order. No Wednesday speaker is supplied.
 - Pricing, phone/contact number, transportation, and carpool details are not confirmed and must not be shown as confirmed facts.
 - Wednesday: Intro to camp. Explain why we need grace; misconceptions about grace as cheap or as license to sin; grace came at the cost of Jesus's life, urges holiness, and is powerful to transform.
 - Thursday: Man's desperate need; the Law condemned and kept us from total corruption; the Law's inability to transform. References include Galatians, Galatians 3:21, and Ezekiel 36.
@@ -67,7 +70,7 @@ Show only these four questions and answers in the FAQ accordion, without the old
 
 - Is Selah Fellowship still the confirmed operating organization, or should organization references be removed/replaced?
 - What year should be displayed with the confirmed November 25-29 date range, if any?
-- Who will preach at the Thursday-Saturday prayer hours, and what time is Wednesday's introductory teaching?
+- What time is Wednesday's introductory teaching?
 - Are the provided session lengths, ages, prices, phone number, registration details beyond the confirmed URL, place names, transportation details, and policies final or sample template content?
 - Are Home, Schedule, and FAQ the only launch views?
 - Are there additional images, video, logos, fonts, and brand rules approved for production use?

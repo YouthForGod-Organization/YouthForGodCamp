@@ -1,8 +1,8 @@
 import { Minus, Plus } from 'lucide-react'
 import { useState } from 'react'
 
-import heroArtwork from '@/assets/transforming-grace-1920.webp'
-import heroArtworkSmall from '@/assets/transforming-grace-960.webp'
+import heroArtwork from '@/assets/transforming-grace-updated-1920.webp'
+import heroArtworkSmall from '@/assets/transforming-grace-updated-960.webp'
 import youthForGodLogo from '@/assets/updatedLogo2.png'
 
 import { AboutSection } from './AboutSection'
@@ -29,6 +29,11 @@ function CampSite() {
 
   const activeDay = SCHEDULE_DAYS[selectedDay] ?? SCHEDULE_DAYS[0]
 
+  const navigateTo = (nextPage: CampPage) => {
+    setPage(nextPage)
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }
+
   const toggleFaq = (index: number) => {
     setOpenFaqs((current) => ({
       ...current,
@@ -47,18 +52,18 @@ function CampSite() {
           <NavButton
             label={pages[0].label}
             isActive={page === pages[0].id}
-            onClick={() => setPage(pages[0].id)}
+            onClick={() => navigateTo(pages[0].id)}
           />
           <NavButton
             label={pages[1].label}
             isActive={page === pages[1].id}
-            onClick={() => setPage(pages[1].id)}
+            onClick={() => navigateTo(pages[1].id)}
           />
           <Emblem />
           <NavButton
             label={pages[2].label}
             isActive={page === pages[2].id}
-            onClick={() => setPage(pages[2].id)}
+            onClick={() => navigateTo(pages[2].id)}
           />
           <a
             href={REGISTRATION_URL}
